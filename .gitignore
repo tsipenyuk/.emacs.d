@@ -1,0 +1,16 @@
+\#*
+*.elc
+*~
+.*.lock
+
+/auto-save-list
+/custom.el
+/elpa
+/elpa-*
+/eshell
+/ido.last
+/.session
+/session.*
+/.org-id-locations
+/org-clock-save.el
+/TODO
