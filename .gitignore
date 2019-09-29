@@ -4,6 +4,7 @@
 .*.lock
 
 /auto-save-list
+/bookmarks
 /custom.el
 /elpa
 /elpa-*

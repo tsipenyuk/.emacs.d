@@ -116,11 +116,11 @@ Call a second time to restore the original window configuration."
 
   ;; Two windows on start
   (split-window-horizontally)
-  (other-window -1)
+  ;;(other-window -1)
   ;;(switch-to-buffer (next-buffer))
-  (split-window-vertically)
-  (other-window 1)
-  (other-window 1)
+  ;;(split-window-vertically)
+  ;;(other-window 1)
+  ;;(other-window 1)
   )
 
 

@@ -32,6 +32,7 @@
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-origami)
+(require 'init-prose-mode)
 (require 'init-themes)
 (require 'init-windows)
 (require 'init-w3m)
