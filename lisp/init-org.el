@@ -6,12 +6,26 @@
 ;; around the Org Agenda.
 
 ;; See https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
+;;
+;; Shortcuts
+;; C-c c       add new entry; t for inbox.org, T for tickler.org
+;; C-c C-c     store new entry in inbox.org
+;; C-c C-w     refile entry from inbox to other .org file (gtd/someday/tickler)
+;; C-c C-c     use on headline to tag. Example tags :@office: , :emacs:
+;; C-c t       set the TODO keyword
+;; C-c C-s     add a timestamp
+;; C-c C-d     add a deadline
+;; C-c C-x C-a archive entry
+;; C-c l       store link (see right below for related shortcuts)
 
 ;;; Code:
 (require-package 'org)
 (maybe-require-package 'org-cliplink)
 
 (define-key global-map (kbd "C-c l") 'org-store-link)
+(define-key global-map (kbd "C-c C-l") 'org-insert-link)
+(define-key global-map (kbd "C-c C-o") 'org-open-at-point)
+
 (define-key global-map (kbd "C-c g") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c t") 'org-todo)
