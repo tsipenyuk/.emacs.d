@@ -15,3 +15,10 @@
 /.org-id-locations
 /org-clock-save.el
 /TODO
+
+# latex files
+*.aux
+*.log
+*.out
+*.pdf
+*.nfs*
