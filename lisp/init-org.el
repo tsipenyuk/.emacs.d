@@ -19,18 +19,19 @@
 ;; C-c l       store link (see right below for related shortcuts)
 
 ;;; Code:
+
 (require-package 'org)
-(maybe-require-package 'org-cliplink)
+;;(maybe-require-package 'org-cliplink)
 
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c C-l") 'org-insert-link)
 (define-key global-map (kbd "C-c C-o") 'org-open-at-point)
 
 (define-key global-map (kbd "C-c g") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c t") 'org-todo)
-;;(global-set-key (kbd "C-c C-x C-a") 'org-archive-subtree-default)
-;;(global-set-key "\C-cb" 'org-iswitchb)
+(define-key global-map (kbd "C-c c") 'org-capture)
+(define-key global-map (kbd "C-c t") 'org-todo)
+(global-set-key (kbd "C-c C-x C-a") 'org-archive-subtree-default)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 (setq calendar-week-start-day 1)
 (setq org-log-done t)
@@ -55,11 +56,11 @@
 ;(setq org-agenda-custom-commands 
 ;      '(("o" "At the office" tags-todo "@office"
 ;         ((org-agenda-overriding-header "Office")))))
-
-(setq org-agenda-custom-commands 
-      '(("o" "At the office" tags-todo "@office"
-         ((org-agenda-overriding-header "Office")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
+;
+; (setq org-agenda-custom-commands 
+;      '(("o" "At the office" tags-todo "@office"
+;         ((org-agenda-overriding-header "Office")
+;          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
 
 (defun my-org-agenda-skip-all-siblings-but-first ()
   "Skip all but the first non-done entry."
@@ -85,7 +86,14 @@
                 ((org-agenda-overriding-header "\nUnscheduled TODO")
                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
          nil
-         nil)))
+         nil)
+	("cv" "Creative writing" tags-todo "@cwriting"
+         ((org-agenda-overriding-header "Creative writing")
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+	("co" "At the office" tags-todo "@office"
+         ((org-agenda-overriding-header "Office")
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+	))
 
 
 (provide 'init-org)
