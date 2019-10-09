@@ -81,20 +81,26 @@
 
 (setq org-agenda-custom-commands
       '(("c" . "My Custom Agendas")
-        ("cu" "Unscheduled TODO"
-         ((todo ""
-                ((org-agenda-overriding-header "\nUnscheduled TODO")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
-         nil
-         nil)
-	("cv" "Creative writing" tags-todo "@cwriting"
-         ((org-agenda-overriding-header "Creative writing")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-	("co" "At the office" tags-todo "@office"
-         ((org-agenda-overriding-header "Office")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+	("cl" "Letters" tags-todo "letters"
+         ((org-agenda-overriding-header "Letters")))
+	("chb" "home_b" tags-todo "home_b"
+         ((org-agenda-overriding-header "home_b")))
+	("chm" "home_m" tags-todo "home_m"
+         ((org-agenda-overriding-header "home_m")))
+	("cm" "Movies" tags-todo "movies"
+         ((org-agenda-overriding-header "Movies")))
+	("cb" "Books" tags-todo "books"
+         ((org-agenda-overriding-header "Books")))
+	("co" "Office" tags-todo "office"
+         ((org-agenda-overriding-header "office")))
+	("cw" "Work" tags-todo "work"
+         ((org-agenda-overriding-header "work")))
+	("cv" "Vacation" tags-todo "vacation"
+         ((org-agenda-overriding-header "Vacation")))
+	("cs" "Shopping" tags-todo "shopping"
+         ((org-agenda-overriding-header "shopping")))
+	("ce" "Errands" tags-todo "errands"
+         ((org-agenda-overriding-header "Errands")))
 	))
-
-
 (provide 'init-org)
 ;;; init-org.el ends here
