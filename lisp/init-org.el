@@ -50,7 +50,7 @@
                            ("~/Dropbox (Maestral)/org/someday.org" :level . 1)
                            ("~/Dropbox (Maestral)/org/tickler.org" :maxlevel . 2)))
 
-;(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ; office home travelling phone email errands
 ;(setq org-agenda-custom-commands 
