@@ -50,7 +50,7 @@
                            ("~/Dropbox (Maestral)/org/someday.org" :level . 1)
                            ("~/Dropbox (Maestral)/org/tickler.org" :maxlevel . 2)))
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+;(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ; office home travelling phone email errands
 ;(setq org-agenda-custom-commands 
@@ -99,8 +99,13 @@
          ((org-agenda-overriding-header "Vacation")))
 	("cs" "Shopping" tags-todo "shopping"
          ((org-agenda-overriding-header "shopping")))
+	("cr" "Projects" tags-todo "PROJECT"
+         ((org-agenda-overriding-header "Projects")))
 	("ce" "Errands" tags-todo "errands"
          ((org-agenda-overriding-header "Errands")))
 	))
+
+(find-file "~/Dropbox (Maestral)/org/inbox.org")
+(find-file "~/Dropbox (Maestral)/org/gtd.org")
 (provide 'init-org)
 ;;; init-org.el ends here
