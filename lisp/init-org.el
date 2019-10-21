@@ -39,12 +39,13 @@
 			     "~/Dropbox (Maestral)/org/inbox.org"
                              "~/Dropbox (Maestral)/org/tickler.org"))
 
-(setq org-capture-templates '(("t" "Todo [inbox]" entry
-                               (file+headline "~/Dropbox (Maestral)/org/inbox.org" "Tasks")
-                               "* TODO %i%?")
-                              ("T" "Tickler" entry
-                               (file+headline "~/Dropbox (Maestral)/org/tickler.org" "Tickler")
-                               "* %i%? \n %U")))
+(setq org-capture-templates
+      '(("t" "Todo [inbox]" entry
+	 (file+headline "~/Dropbox (Maestral)/org/inbox.org" "Tasks")
+	 "* TODO %i%? \n %U")
+	("T" "Tickler" entry
+	 (file+headline "~/Dropbox (Maestral)/org/tickler.org" "Tickler")
+	 "* %i%? \n %U")))
 
 (setq org-refile-targets '(("~/Dropbox (Maestral)/org/gtd.org" :maxlevel . 3)
                            ("~/Dropbox (Maestral)/org/someday.org" :level . 1)
