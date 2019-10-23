@@ -19,14 +19,14 @@
  (position . 1883))
 ("org-capture-last-stored-marker"
  (filename . "~/Dropbox (Maestral)/org/gtd.org")
- (front-context-string . "*** TODO Create ")
- (rear-context-string . "0-21 Mo 12:20]\n\n")
- (position . 1676))
+ (front-context-string . "*** TODO Rewrite")
+ (rear-context-string . "ions reference\n\n")
+ (position . 1186))
 ("org-refile-last-stored"
  (filename . "~/Dropbox (Maestral)/org/gtd.org")
- (front-context-string . "*** TODO Create ")
- (rear-context-string . "0-21 Mo 12:20]\n\n")
- (position . 1676))
+ (front-context-string . "*** TODO Rewrite")
+ (rear-context-string . "ions reference\n\n")
+ (position . 1186))
 ("org-capture-last-stored"
  (filename . "~/Dropbox (Maestral)/org/inbox.org")
  (front-context-string)
