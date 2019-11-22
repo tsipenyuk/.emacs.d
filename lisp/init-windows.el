@@ -100,8 +100,8 @@ Call a second time to restore the original window configuration."
   ;;(add-to-list 'default-frame-alist '(left . 50))
   ;;(set-frame-font "ProggyClean")
 
-  (set-face-attribute 'default nil :font "Ubuntu Mono 14" )
-  (set-frame-font "Ubuntu Mono 14" nil t)
+  (set-face-attribute 'default nil :font "Ubuntu Mono 16" )
+  (set-frame-font "Ubuntu Mono 16" nil t)
 
   ;; Disable graphical goodies
   ;; To disable the menu bar, place the following line in your .emacs file:

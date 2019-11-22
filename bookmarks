@@ -29,7 +29,7 @@
  (position . 1186))
 ("org-capture-last-stored"
  (filename . "~/Dropbox (Maestral)/org/inbox.org")
- (front-context-string)
- (rear-context-string)
- (position . 9))
+ (front-context-string . "** TODO Consult ")
+ (rear-context-string . "1-20 Wed 12:19]\n")
+ (position . 105))
 )

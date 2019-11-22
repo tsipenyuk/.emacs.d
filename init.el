@@ -45,6 +45,9 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; Set python interpreter
+(setq python-shell-interpreter "python3")
+
 ;;----------------------------------------------------------------------------
 ;; Replace highlighted regions
 ;;----------------------------------------------------------------------------
