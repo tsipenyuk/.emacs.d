@@ -45,7 +45,8 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-;; Set python interpreter
+
+;; python3
 (setq python-shell-interpreter "python3")
 
 ;;----------------------------------------------------------------------------
