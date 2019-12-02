@@ -47,7 +47,21 @@
 
 
 ;; python3
-(setq python-shell-interpreter "python3")
+;(setq doom-modeline-python-executable "python3")
+;(setq python-shell-interpreter "python3")
+;(setq python-shell-interpreter-args "-m IPython --simple-prompt -i")
+;(setq flycheck-python-pycompile-executable "python3"
+;      flycheck-python-pylint-executable "python3"
+;      flycheck-python-flake8-executable "python3")
+;(setq doom-modeline-major-mode-icon nil
+;      doom-modeline-persp-name t
+;      doom-modeline-github t
+;      doom-modeline-version t
+;      doom-modeline-minor-modes t)
+;(minions-mode 1)
+;(setq persp-nil-name "#")
+;(setq minions-mode-line-lighter "◎")
+;;(setq python-shell-interpreter "python3")
 
 ;;----------------------------------------------------------------------------
 ;; Replace highlighted regions
