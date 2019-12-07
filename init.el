@@ -28,15 +28,21 @@
 (require 'init-column-marker)
 (require 'init-idomenu)
 (require 'init-julia)
+(require 'init-helm-bibtex)
 (require 'init-keys)
 (require 'init-lilypond)
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-origami)
 (require 'init-prose-mode)
+(require 'init-pdf-tools)
 (require 'init-themes)
 (require 'init-windows)
 (require 'init-w3m)
+
+;;----------------------------------------------------------------------------
+;; Load one-liners
+;;----------------------------------------------------------------------------
 
 ;;----------------------------------------------------------------------------
 ;; Enable ido
