@@ -1,0 +1,103 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Sun Jan  5 10:56:35 2020
+;; Desktop file format version 208
+;; Emacs version 25.2.2
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (24081 45779 100025 301000) (desktop . "208") "at@bodhi-at" nil nil ((((font-backend xft x) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-21-*-*-*-m-0-iso10646-1") (font-parameter . "Ubuntu Mono 16") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#839496") (background-color . "#002b36") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (fullscreen . fullboth) (display-type . color) (background-mode . dark) (cursor-color . "#839496") (environment) (sticky) (fullscreen-restore) (frameset--id . "D896-36CE-559E-A7DA") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0.0") (explicit-name) (visibility . t) (height . 65) (width . 231) (left . 0) (top . 0)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 88) (min-pixel-width . 220) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 88) (min-pixel-height-safe . 22) (min-pixel-width-safe . 44)) hc (pixel-width . 2560) (pixel-height . 1418) (total-width . 233) (total-height . 64) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1290) (pixel-height . 1418) (total-width . 117) (total-height . 64) (normal-height . 1.0) (normal-width . 0.5033482142857143) (buffer "chapter03--er.tex" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 7316) (start . 5405))) (leaf (last . t) (pixel-width . 1270) (pixel-height . 1418) (total-width . 116) (total-height . 64) (normal-height . 1.0) (normal-width . 0.4966517857142857) (buffer "classicthesis-config.tex" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 19667) (start . 18554)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("gls" "variants-f" "tag" "coro" "stack" "tackrel" "emph"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/at/git/phd/fbmatter/listings.tex" "/home/at/git/phd/thesis.tex" "/home/at/git/phd/chapters/chapter01--setting.tex" "/home/at/git/phd/classicthesis-config.tex" "/home/at/git/phd/chapters/chapter03--er.tex"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/at/git/phd/classicthesis-config.tex"
+  "classicthesis-config.tex"
+  'plain-tex-mode
+  nil
+  19667
+  '(19665 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (19214 20660 19771 19274 19274 19274 20499 20419 20311 20313 19588 19525 4779 5139 4781 5139))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/fbmatter/listings.tex"
+  "listings.tex"
+  'plain-tex-mode
+  nil
+  1279
+  '(1900 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1831 1876 1783))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/chapters/chapter03--er.tex"
+  "chapter03--er.tex"
+  'latex-mode
+  nil
+  7316
+  '(2830 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2807 2769 2459 3721 3491 3226 3434 2260 2341 2311 3056 5903 5916 5903 5903 5903))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/thesis.tex"
+  "thesis.tex"
+  'latex-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/chapters/chapter01--setting.tex"
+  "chapter01--setting.tex"
+  'latex-mode
+  nil
+  1266
+  '(1221 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/Dropbox (Maestral)/org/gtd.org"
+  "gtd.org"
+  'org-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/Dropbox (Maestral)/org/inbox.org"
+  "inbox.org"
+  'org-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+

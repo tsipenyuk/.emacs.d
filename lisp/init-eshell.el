@@ -11,7 +11,8 @@
 
 ;;(add-hook 'emacs-startup-hook (lambda () (eshell) (previous-buffer)))
 (add-hook 'emacs-startup-hook 'eshell)
-(cd (expand-file-name "~/.emacs.d"))
+;;(cd (expand-file-name "~/.emacs.d"))
+(cd (expand-file-name "~/git/phd"))
 
 (provide 'init-eshell)
 ;;; init-eshell.el ends here
