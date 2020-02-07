@@ -35,21 +35,21 @@
 
 (setq calendar-week-start-day 1)
 (setq org-log-done t)
-(setq org-agenda-files (list "~/Dropbox (Maestral)/org/gtd.org"
-			     "~/Dropbox (Maestral)/org/inbox.org"
-                             "~/Dropbox (Maestral)/org/tickler.org"))
+(setq org-agenda-files (list "~/Dropbox/org/gtd.org"
+			     "~/Dropbox/org/inbox.org"
+                             "~/Dropbox/org/tickler.org"))
 
 (setq org-capture-templates
       '(("t" "Todo [inbox]" entry
-	 (file+headline "~/Dropbox (Maestral)/org/inbox.org" "Tasks")
+	 (file+headline "~/Dropbox/org/inbox.org" "Tasks")
 	 "* TODO %i%? \n %U")
 	("T" "Tickler" entry
-	 (file+headline "~/Dropbox (Maestral)/org/tickler.org" "Tickler")
+	 (file+headline "~/Dropbox/org/tickler.org" "Tickler")
 	 "* %i%? \n %U")))
 
-(setq org-refile-targets '(("~/Dropbox (Maestral)/org/gtd.org" :maxlevel . 3)
-                           ("~/Dropbox (Maestral)/org/someday.org" :level . 1)
-                           ("~/Dropbox (Maestral)/org/tickler.org" :maxlevel . 2)))
+(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+                           ("~/Dropbox/org/someday.org" :level . 1)
+                           ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
 
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
@@ -106,7 +106,7 @@
          ((org-agenda-overriding-header "Errands")))
 	))
 
-(find-file "~/Dropbox (Maestral)/org/inbox.org")
-(find-file "~/Dropbox (Maestral)/org/gtd.org")
+(find-file "~/Dropbox/org/inbox.org")
+(find-file "~/Dropbox/org/gtd.org")
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -2,128 +2,68 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri Jan 31 10:20:07 2020
+;; Created Fri Feb  7 09:59:47 2020
 ;; Desktop file format version 208
 ;; Emacs version 26.3
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (24115 61767 5828 846000) (desktop . "208") "at@at-pc" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font-backend xft x) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-21-*-*-*-m-0-iso10646-1") (font-parameter . "Ubuntu Mono 16") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#839496") (background-color . "#002b36") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#839496") (environment) (sticky) (fullscreen-restore . maximized) (frameset--id . "D896-36CE-559E-A7DA") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . ":0.0") (explicit-name) (frameset--text-pixel-width . 1904) (frameset--text-pixel-height . 1080) (height . 49) (width . 173) (left . 0) (top . 0)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 88) (min-pixel-width . 220) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 88) (min-pixel-height-safe . 22) (min-pixel-width-safe . 44)) hc (pixel-width . 1920) (pixel-height . 1058) (total-width . 175) (total-height . 48) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 963) (pixel-height . 1058) (total-width . 88) (total-height . 48) (normal-height . 1.0) (normal-width . 0.5) (buffer "*eshell*" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 289) (start . 1))) (leaf (last . t) (pixel-width . 957) (pixel-height . 1058) (total-width . 87) (total-height . 48) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Backtrace*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 31) (start . 1)))))])
+(setq desktop-saved-frameset [frameset 1 (24125 9987 257164 446000) (desktop . "208") "at@at-pc" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font-backend xft x) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-21-*-*-*-m-0-iso10646-1") (font-parameter . "Ubuntu Mono 16") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#657b83") (background-color . "#fdf6e3") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen . fullboth) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . light) (cursor-color . "#657b83") (environment) (fullscreen-restore) (sticky) (frameset--id . "D896-36CE-559E-A7DA") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . ":0.0") (explicit-name) (height . 49) (width . 173) (left . 0) (top . 0)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 88) (min-pixel-width . 220) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 88) (min-pixel-height-safe . 22) (min-pixel-width-safe . 44)) hc (pixel-width . 1920) (pixel-height . 1058) (total-width . 175) (total-height . 48) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 963) (pixel-height . 1058) (total-width . 88) (total-height . 48) (normal-height . 1.0) (normal-width . 0.5) (buffer "*eshell*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 33) (start . 1))) (leaf (last . t) (pixel-width . 957) (pixel-height . 1058) (total-width . 87) (total-height . 48) (normal-height . 1.0) (normal-width . 0.5) (buffer "inbox.org" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 30) (start . 1)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("one" "pa" "gls" "variants-f" "tag" "coro" "stack" "tackrel" "emph"))
+(setq search-ring '("is larg" "angle p" "proximinal" "includ" "figure" "exa" "examp" "subdi" "proper" "defini" "monotone operators]" "hh = " "resh" "gSol" "gI" "nS"))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("/home/at/.bashrc" "/home/at/.bash_profile" "/home/at/.emacs.d/init.el" "/home/at/.bash_profile" "/home/at/.bashrc" "/home/at/.emacs.d/init.el" "/home/at/.emacs.d/lisp/init-eshell.el" "/home/at/git/phd/fbmatter/listings.tex" "/home/at/git/phd/thesis.tex" "/home/at/git/phd/chapters/chapter01--setting.tex" "/home/at/git/phd/classicthesis-config.tex" "/home/at/git/phd/chapters/chapter03--er.tex"))
+(setq file-name-history '("/home/at/Dropbox (Maestral)/org/inbox.org" "/home/at/git/phd/gfx/nc.tex" "/home/at/git/phd/chapters/chapter02--projections-energies.tex" "/home/at/git/phd/chapters/chapter02b--non-uniqueness.tex" "/home/at/git/phd/gfx/drdrdr.tex" "/home/at/git/fprs-scripts/old-dev/gg1--shifting-functions.jl" "/home/at/git/fprs-scripts/old-dev/2019-08-22--unwrap-2d.jl" "/home/at/git/fprs-scripts/scripts/hk1--03-02-2020--2D-ER.jl" "/home/at/git/fprs-scripts/scripts/hm1--06-02-2020--ER-local-conv-for-small-angle-disturbances.jl" "/home/at/git/phd/chapters/chapter02--projections-energies.tex" "/home/at/git/phd/classicthesis-config.tex" "/home/at/git/phd/chapters/chapter03--er.tex" "/home/at/git/fprs-scripts/scripts/hl1--05-02-2020--ER-FP-via-DR.jl" "/home/at/.julia/dev/FPRS/src/bookkeeping.jl" "/home/at/git/fprs-scripts/scripts/hc1--2019-12-19--test-decaying-direction-at-fixed-pts.jl" "/home/at/git/fprs-scripts/scripts/ha1--2019-11-15--search-for-metric.jl" "/home/at/git/fprs-scripts/scripts/hk1--03-02-2020--2D-ER.jl" "/home/at/git/fprs-scripts/scripts/hc1--2019-12-19--test-decaying-direction-at-fixed-pts.jl" "/home/at/git/fprs-scripts/scripts/ha1--2019-11-15--search-for-metric.jl" "/home/at/git/fprs-scripts/scripts/hg1--29-01-2020--dm-run.jl" "/home/at/git/phd/gfx/projections-mim.tex" "/home/at/git/phd/gfx/erf-energy-dissipation.tex" "/home/at/git/phd/gfx/lemma-proj-prop.tex" "/home/at/git/phd/classicthesis-config.tex" "/home/at/git/phd/gfx/dr-formulations.tex" "/home/at/git/phd/chapters/chapter03--er.tex" "/home/at/git/fprs-scripts/scripts/hi1--02-02-2020--circle-line-dr.jl~" "/home/at/git/fprs-scripts/scripts/hi2--02-02-2020--circle-hl-dr-clean.jl" "/home/at/git/fprs-scripts/scripts/hi1--02-02-2020--circle-line-dr.jl" "/home/at/.emacs.d/lisp/init-julia.el" "/home/at/git/fprs-scripts/scripts/hi1--02-02-2020--circle-line-dr.jl" "/home/at/.emacs.d/lisp/init-eshell.el" "/home/at/.emacs.d/init.el" "/home/at/.bashrc" "/home/at/git/fprs-scripts/old-dev/test--hio-circHl.jl" "/home/at/git/fprs-scripts/scripts/hi1--02-02-2020--circle-line-dr.jl" "/home/at/git/fprs-scripts/scripts/hi1--01-02-2020--circle-line-dr.jl" "/home/at/git/phd/gfx/dr-formulations.tex" "/home/at/git/phd/chapters/chapter01--setting.tex" "/home/at/git/phd/chapters/chapter03--er.tex" "/home/at/git/phd/gfx/projections-pss.tex" "/home/at/git/phd/gfx/path-discretization.tex" "/home/at/git/phd/chapters/temp.tex" "/home/at/git/phd/gfx/erf-energy-dissipation.tex" "/home/at/git/phd/gfx/projections-pss-backup.tex" "/home/at/git/phd/gfx/projections-hs.tex" "/home/at/.bashrc" "/home/at/.emacs.d/lisp/init-eshell.el" "/home/at/.emacs.d/init.el" "/home/at/git/phd/gfx/projections-hs.tex" "/home/at/git/phd/run.sh" "/home/at/git/phd/chapters/chapter02--projections-energies.tex" "/home/at/git/phd/chapters/chapter03--er.tex" "/home/at/.emacs.d/lisp/init-eshell.el" "/home/at/.bashrc" "/home/at/.bash_profile" "/home/at/.emacs.d/init.el" "/home/at/.bash_profile" "/home/at/.bashrc" "/home/at/.emacs.d/init.el" "/home/at/.emacs.d/lisp/init-eshell.el" "/home/at/git/phd/fbmatter/listings.tex" "/home/at/git/phd/thesis.tex" "/home/at/git/phd/chapters/chapter01--setting.tex" "/home/at/git/phd/classicthesis-config.tex" "/home/at/git/phd/chapters/chapter03--er.tex"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 208
-  "/home/at/.emacs.d/init.el"
-  "init.el"
-  'emacs-lisp-mode
-  '(eldoc-mode)
-  1686
-  '(1648 t)
+  "/home/at/Dropbox (Maestral)/org/inbox.org"
+  "inbox.org"
+  'org-mode
+  nil
+  30
+  '(nil nil)
   nil
   nil
-  '((buffer-display-time 24115 61725 937908 40000) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1587 183 1647 1587 194 1356 1))))
-
-(desktop-create-buffer 208
-  "/home/at/.bashrc"
-  ".bashrc"
-  'sh-mode
-  nil
-  3932
-  '(3773 nil)
-  nil
-  nil
-  '((buffer-display-time 24115 61700 192450 322000) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (3772 1491))))
-
-(desktop-create-buffer 208
-  "/home/at/.bash_profile"
-  ".bash_profile"
-  'sh-mode
-  nil
-  160
-  '(1 nil)
-  nil
-  nil
-  '((buffer-display-time 24115 61674 717102 375000) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (161 160 13 1 1 161 1))))
-
-(desktop-create-buffer 208
-  "/home/at/.emacs.d/lisp/init-eshell.el"
-  "init-eshell.el"
-  'emacs-lisp-mode
-  '(eldoc-mode)
-  436
-  '(436 nil)
-  nil
-  nil
-  '((buffer-display-time 24115 61333 917484 338000) (buffer-file-coding-system . prefer-utf-8-unix))
-  '((mark-ring (436 436 400 436))))
-
-(desktop-create-buffer 208
-  "/home/at/git/phd/classicthesis-config.tex"
-  "classicthesis-config.tex"
-  'plain-tex-mode
-  nil
-  19667
-  '(19665 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 24115 61120 750903 456000) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (19214 20660 19771 19274 19274 19274 20499 20419 20311 20313 19588 19525 4779 5139 4781 5139))))
-
-(desktop-create-buffer 208
-  "/home/at/git/phd/fbmatter/listings.tex"
-  "listings.tex"
-  'plain-tex-mode
-  nil
-  1279
-  '(1900 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 24115 61146 35867 723000) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1831 1876 1783))))
+  '((buffer-display-time 24125 9921 518446 321000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "/home/at/git/phd/chapters/chapter03--er.tex"
   "chapter03--er.tex"
   'latex-mode
   nil
-  7316
-  '(2830 nil)
+  41325
+  '(40816 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-display-time 24115 61209 500148 584000) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (2807 2769 2459 3721 3491 3226 3434 2260 2341 2311 3056 5903 5916 5903 5903 5903))))
+  '((indent-tabs-mode) (buffer-display-time 24125 9286 29328 228000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (40862 40861 40852 40834 40967 40965 40833 40739 41072 40646 40646 41226 41122 41122 47628 41325))))
 
 (desktop-create-buffer 208
-  "/home/at/git/phd/thesis.tex"
-  "thesis.tex"
+  "/home/at/git/phd/chapters/chapter02--projections-energies.tex"
+  "chapter02--projections-energies.tex"
   'latex-mode
   nil
-  1
-  '(nil nil)
+  72478
+  '(9818 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-display-time 24115 61146 360294 163000) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
+  '((indent-tabs-mode) (buffer-display-time 24124 64290 522635 281000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (9742 9918 10501 9896 9609 10686 8400 962 3206 3197 1109 1083 1))))
 
 (desktop-create-buffer 208
-  "/home/at/git/phd/chapters/chapter01--setting.tex"
-  "chapter01--setting.tex"
-  'latex-mode
+  "/home/at/git/phd/classicthesis-config.tex"
+  "classicthesis-config.tex"
+  'plain-tex-mode
   nil
-  1266
-  '(1221 nil)
+  20278
+  '(20279 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-display-time 24115 61146 578484 957000) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
+  '((indent-tabs-mode) (buffer-display-time 24124 31874 712870 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1))))
 
 (desktop-create-buffer 208
   "/home/at/Dropbox (Maestral)/org/gtd.org"
@@ -134,18 +74,186 @@
   '(nil nil)
   nil
   nil
-  '((buffer-display-time 24115 61700 191202 572000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((buffer-display-time 24125 9916 339070 246000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/at/Dropbox (Maestral)/org/inbox.org"
-  "inbox.org"
+  "/home/at/git/phd/gfx/dr-formulations.tex"
+  "dr-formulations.tex"
+  'latex-mode
+  nil
+  508
+  '(1045 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24123 59602 161504 124000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (804 1076 1053 1037 116 89 94 919 655 372 785 805 2816 1 491 647))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/gfx/erf-energy-dissipation.tex"
+  "erf-energy-dissipation.tex"
+  'latex-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24123 56099 773824 240000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(eldoc-mode)
+  1
+  '(1587 nil)
+  nil
+  nil
+  '((buffer-display-time 24123 19400 580894 802000) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1587 1587 1587 183 1587 1587 194 1356 1))))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/lisp/init-eshell.el"
+  "init-eshell.el"
+  'emacs-lisp-mode
+  '(eldoc-mode)
+  798
+  '(607 nil)
+  nil
+  nil
+  '((buffer-display-time 24123 19331 444327 504000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring (662 708 607 623 607 95 800 800 800 800 607 800 607 607 607 607))))
+
+(desktop-create-buffer 208
+  "/home/at/.bashrc"
+  ".bashrc"
+  'sh-mode
+  nil
+  3958
+  '(3773 nil)
+  nil
+  nil
+  '((buffer-display-time 24123 19267 831493 668000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3844 3824 3785 3773 3772 1491))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/chapters/chapter01--setting.tex"
+  "chapter01--setting.tex"
+  'latex-mode
+  nil
+  15177
+  '(14955 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24123 13333 144617 868000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1266 1221))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/gfx/path-discretization.tex"
+  "path-discretization.tex"
+  'latex-mode
+  nil
+  3512
+  '(1780 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24123 2010 243645 83000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1534))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/gfx/projections-pss.tex"
+  "projections-pss.tex"
+  'plain-tex-mode
+  nil
+  6421
+  '(6374 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24122 64605 128524 856000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1120 1086 127 87 1))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/gfx/projections-pss-backup.tex"
+  "projections-pss-backup.tex"
+  'plain-tex-mode
+  nil
+  4452
+  '(4419 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24122 62286 653943 514000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (4766 4716 1))))
+
+(desktop-create-buffer 208
+  "/home/at/.bash_profile"
+  ".bash_profile"
+  'sh-mode
+  nil
+  160
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 24122 53731 164985 191000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (161 160 13 1 1 161 1))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/fbmatter/listings.tex"
+  "listings.tex"
+  'plain-tex-mode
+  nil
+  1279
+  '(1900 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24122 53202 971407 719000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1831 1876 1783))))
+
+(desktop-create-buffer 208
+  "/home/at/git/phd/thesis.tex"
+  "thesis.tex"
+  'latex-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 24122 53203 588518 861000) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/Dropbox (Maestral)/org/inbox.org_archive"
+  "inbox.org_archive"
+  'org-mode
+  nil
+  8515
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 24124 10329 914539 0) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/Dropbox (Maestral)/org/someday.org"
+  "someday.org"
   'org-mode
   nil
   1
   '(nil nil)
   nil
   nil
-  '((buffer-display-time 24115 61700 191202 21000) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((buffer-display-time 24124 10330 9556 663000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/Dropbox (Maestral)/org/tickler.org"
+  "tickler.org"
+  'org-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 24125 9916 339069 945000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
   '((mark-ring nil)))
 
