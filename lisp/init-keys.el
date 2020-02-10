@@ -30,5 +30,12 @@
 ;; Add new lines with C-n
 (setq next-line-add-newlines t)
 
+;; Create revert buffer shortcut
+;; Source: https://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
+(global-set-key (kbd "C-c r") (lambda ()
+                                (interactive)
+                                (revert-buffer t t t)
+                                (message "buffer is reverted")))
+
 (provide 'init-keys)
 ;;; init-keys.el ends here

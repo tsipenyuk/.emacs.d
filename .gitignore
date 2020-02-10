@@ -3,6 +3,9 @@
 *~
 .*.lock
 
+/.emacs.desktop
+/bookmarks
+
 /auto-save-list
 #/bookmarks
 /custom.el
