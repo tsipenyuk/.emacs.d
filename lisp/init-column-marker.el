@@ -3,8 +3,8 @@
 ;;; Code:
 
 (require 'column-marker)
-(add-hook 'text-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'julia-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;(add-hook 'text-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;(add-hook 'julia-mode-hook (lambda () (interactive) (column-marker-1 80)))
 (global-set-key [?\C-c ?m] 'column-marker-1)
 
 (global-set-key [?\C-c ?d]

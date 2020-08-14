@@ -33,9 +33,13 @@
 (global-set-key (kbd "C-c C-x C-a") 'org-archive-subtree-default)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+
+(define-key global-map (kbd "C-'") (kbd "C-c g a"))
+
 (setq calendar-week-start-day 1)
 (setq org-log-done t)
 (setq org-agenda-files (list "~/Dropbox/org/gtd.org"
+			     "~/git/phd/thesis-todo.org"
 			     "~/Dropbox/org/inbox.org"
                              "~/Dropbox/org/tickler.org"))
 
@@ -51,7 +55,7 @@
                            ("~/Dropbox/org/someday.org" :level . 1)
                            ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
 
-(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+ (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ; office home travelling phone email errands
 ;(setq org-agenda-custom-commands 

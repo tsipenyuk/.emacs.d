@@ -33,6 +33,7 @@
 (require 'init-lilypond)
 (require 'init-markdown)
 (require 'init-org)
+;;(require 'init-org-scrum)
 (require 'init-origami)
 (require 'init-prose-mode)
 (require 'init-pdf-tools)
@@ -41,9 +42,10 @@
 (require 'init-w3m)
 
 ;;----------------------------------------------------------------------------
-;; Load one-liners
+;; One-liners
 ;;----------------------------------------------------------------------------
-(desktop-save-mode 0) ;; save desktop config on exit
+(desktop-save-mode 0) ;; save desktop config on exit if save-mode is 1
+(setq revert-without-query '(".pdf")) ;; reload *pdf's without asking
 
 ;;----------------------------------------------------------------------------
 ;; Enable ido
