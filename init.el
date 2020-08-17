@@ -47,6 +47,10 @@
 (desktop-save-mode 0) ;; save desktop config on exit if save-mode is 1
 (setq revert-without-query '(".pdf")) ;; reload *pdf's without asking
 
+;; Custom vertical scroll
+(define-key global-map (kbd "M-p") (kbd "C-u 8 C-p C-l"))
+(define-key global-map (kbd "M-n") (kbd "C-u 8 C-n C-l"))
+
 ;;----------------------------------------------------------------------------
 ;; Enable ido
 ;;----------------------------------------------------------------------------
