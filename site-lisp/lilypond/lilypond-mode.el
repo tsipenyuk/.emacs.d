@@ -275,13 +275,13 @@ in LilyPond-include-path."
 (defun LilyPond-compile-file (command name)
   ;; We maybe should know what we run here (Lily, lilypond, tex)
   ;; and adjust our error-matching regex ?
-  (compile-internal
+  (compilation-start
    (if (eq LilyPond-command-current 'LilyPond-command-master)
        command
      ;; use temporary directory for Commands on Buffer/Region
      ;; hm.. the directory is set twice, first to default-dir
      (concat "cd " (LilyPond-temp-directory) "; " command))
-   "No more errors" name))
+   'LilyPond-mode #'(lambda (mode-name) "*LilyPond-compile*")))
 
 ;; do we still need this, now that we're using compile-internal?
 (defun LilyPond-save-buffer ()
@@ -322,7 +322,7 @@ in LilyPond-include-path."
 ;; variable instead of quering the user. 
 (defvar LilyPond-command-force nil)
 
-(defcustom LilyPond-lilypond-command "Applications/lilypond.app/Contents/Resources/bin/lilypond test.ly"
+(defcustom LilyPond-lilypond-command "/usr/bin/lilypond test.ly"
   "Command used to compile LY files."
   :group 'LilyPond
   :type 'string)

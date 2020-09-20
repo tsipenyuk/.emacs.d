@@ -33,27 +33,28 @@
 (global-set-key (kbd "C-c C-x C-a") 'org-archive-subtree-default)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+(define-key global-map (kbd "C-c o") 'org-promote-subtree)
+(define-key global-map (kbd "C-c u") 'org-demote-subtree)
 
 (define-key global-map (kbd "C-'") (kbd "C-c g a"))
 
 (setq calendar-week-start-day 1)
 (setq org-log-done t)
-(setq org-agenda-files (list "~/Dropbox/org/gtd.org"
-			     "~/git/phd/thesis-todo.org"
-			     "~/Dropbox/org/inbox.org"
-                             "~/Dropbox/org/tickler.org"))
+(setq org-agenda-files (list "~/gdrive/org/gtd.org"
+			     "~/gdrive/org/inbox.org"
+                             "~/gdrive/org/tickler.org"))
 
 (setq org-capture-templates
       '(("t" "Todo [inbox]" entry
-	 (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+	 (file+headline "~/gdrive/org/inbox.org" "Tasks")
 	 "* TODO %i%? \n %U")
 	("T" "Tickler" entry
-	 (file+headline "~/Dropbox/org/tickler.org" "Tickler")
+	 (file+headline "~/gdrive/org/tickler.org" "Tickler")
 	 "* %i%? \n %U")))
 
-(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-                           ("~/Dropbox/org/someday.org" :level . 1)
-                           ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
+(setq org-refile-targets '(("~/gdrive/org/gtd.org" :maxlevel . 3)
+                           ("~/gdrive/org/someday.org" :level . 1)
+                           ("~/gdrive/org/tickler.org" :maxlevel . 2)))
 
  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
@@ -110,7 +111,7 @@
          ((org-agenda-overriding-header "Errands")))
 	))
 
-(find-file "~/Dropbox/org/inbox.org")
-(find-file "~/Dropbox/org/gtd.org")
+(find-file "~/gdrive/org/inbox.org")
+(find-file "~/gdrive/org/gtd.org")
 (provide 'init-org)
 ;;; init-org.el ends here

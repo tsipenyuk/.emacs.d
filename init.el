@@ -25,6 +25,7 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 (require 'init-eshell)
+(require 'init-buffer-move)
 (require 'init-column-marker)
 (require 'init-idomenu)
 (require 'init-julia)
@@ -33,11 +34,11 @@
 (require 'init-lilypond)
 (require 'init-markdown)
 (require 'init-org)
-;;(require 'init-org-scrum)
 (require 'init-origami)
 (require 'init-prose-mode)
 (require 'init-pdf-tools)
 (require 'init-themes)
+(require 'init-test)
 (require 'init-windows)
 (require 'init-w3m)
 
@@ -46,10 +47,18 @@
 ;;----------------------------------------------------------------------------
 (desktop-save-mode 0) ;; save desktop config on exit if save-mode is 1
 (setq revert-without-query '(".pdf")) ;; reload *pdf's without asking
+(setq apropos-sort-by-scores t) ;; Apropos sorts results by relevancy
+
 
 ;; Custom vertical scroll
 (define-key global-map (kbd "M-p") (kbd "C-u 8 C-p C-l"))
 (define-key global-map (kbd "M-n") (kbd "C-u 8 C-n C-l"))
+
+;; Org-scrum
+;;(require 'init-org-scrum)
+(define-key global-map (kbd "C-c s") 'org-scrum-update-all)
+(define-key global-map (kbd "C-c e") 'org-html-export-to-html)
+
 
 ;;----------------------------------------------------------------------------
 ;; Enable ido

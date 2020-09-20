@@ -8,6 +8,7 @@
 
 ;; Copy file name 
 (global-set-key (kbd "C-c C-f") 'copy-file-name-to-clipboard)
+(global-set-key (kbd "s-f") 'copy-file-name-to-clipboard)
 
 ;; Use hyper key for numeric keypad
 (global-set-key (kbd "H-m") (kbd "1")) ; upper case “H” is for hyper
@@ -26,6 +27,25 @@
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-{") 'backward-paragraph)
 (global-set-key (kbd "C-}") 'forward-paragraph)
+
+;; try efficient movement
+(global-set-key (kbd "C-*") (kbd "C-8"))
+
+;; Other-window 
+(global-set-key (kbd "M-o") 'other-window)
+
+;; (windmove-default-keybindings) --> S-<left> for moving between windows
+(global-set-key (kbd "s-.") 'windmove-up)
+(global-set-key (kbd "s-e") 'windmove-down)
+(global-set-key (kbd "s-o") 'windmove-left)
+(global-set-key (kbd "s-u") 'windmove-right)
+
+;; move buffers; uses functions from lisp/init-buffer-move.el
+;;(global-set-key (kbd "C-c C-x c")  'buf-move-up)
+;;(global-set-key (kbd "C-c C-x t")  'buf-move-down)
+;;(global-set-key (kbd "C-c C-x h")  'buf-move-left)
+;;(global-set-key (kbd "C-c C-x n")  'buf-move-right)
+(global-set-key (kbd "s-b")  'buf-move-left)
 
 ;; Add new lines with C-n
 (setq next-line-add-newlines t)

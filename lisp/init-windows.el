@@ -13,7 +13,7 @@
 
 
 ;;----------------------------------------------------------------------------
-;; When splitting window, show (other-buffer) in the new window
+;; When splitting window, show (other-buffer) in the new window -- DISABLED -- 
 ;;----------------------------------------------------------------------------
 (defun split-window-func-with-other-buffer (split-function)
   (lambda (&optional arg)
@@ -25,8 +25,8 @@
       (unless arg
         (select-window target-window)))))
 
-(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
-(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
+;;(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
+;;(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
 
 (defun at/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
@@ -115,7 +115,7 @@ Call a second time to restore the original window configuration."
   ;;(toggle-frame-fullscreen)
 
   ;; Two windows on start
-  (split-window-horizontally)
+  ;;(split-window-horizontally)
   ;;(other-window -1)
   ;;(switch-to-buffer (next-buffer))
   ;;(split-window-vertically)
