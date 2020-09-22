@@ -57,5 +57,7 @@
                                 (revert-buffer t t t)
                                 (message "buffer is reverted")))
 
+(global-set-key (kbd "s-f") 'copy-file-name-to-clipboard)
+
 (provide 'init-keys)
 ;;; init-keys.el ends here

@@ -54,6 +54,7 @@
 
 (setq org-refile-targets '(("~/gdrive/org/gtd.org" :maxlevel . 3)
                            ("~/gdrive/org/someday.org" :level . 1)
+			   ("~/gdrive/org/references/math/star.org" :maxlevel . 2)
                            ("~/gdrive/org/tickler.org" :maxlevel . 2)))
 
  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))

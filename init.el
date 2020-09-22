@@ -42,9 +42,50 @@
 (require 'init-windows)
 (require 'init-w3m)
 
+
+;;----------------------------------------------------------------------------
+;; Test packages
+;;----------------------------------------------------------------------------
+;;(require-package 'centered-window) ;; Manual install needed? Available obsolete?
+;;(require 'centered-window-mode)
+;;(centered-window-mode t)
+
+(require 'init-arxiv-fetcher)
+
+;; Add pdv-to-rut input method -----------------------------------------------
+;; Modified variant of /usr/local/share/emacs/26.3/lisp/leim/quail/.. 
+(require 'pdv-to-rut)
+
+;; This is awful, but does the job. Created as described in
+;; https://emacs.stackexchange.com/questions/70/how-to-save-a-keyboard-macro-as-a-lisp-function
+(fset 'kbd-macro-set-input-method-pdv-to-rut
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 115 101 116 45 105 110 tab return 112 100 118 45 116 111 tab return] 0 "%d")) arg)))
+
+(fset 'kbd-macro-set-input-method-ucs
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 115 101 116 45 105 110 tab return 117 99 115 return] 0 "%d")) arg)))
+
+(global-set-key (kbd "s-)") (setq current-input-method 'kbd-macro-set-input-method-pdv-to-rut))
+(global-set-key (kbd "s-+") (setq current-input-method 'kbd-macro-set-input-method-ucs))
+;;----------------------------------------------------------------------------
+
+;;----------------------------------------------------------------------------
+;; Test functions
+;;----------------------------------------------------------------------------
+(defun fill-to-end (char)
+  (interactive "cFill Character:")
+  (save-excursion
+    (end-of-line)
+    (while (< (current-column) 80)
+      (insert-char char))))
+
+
+
 ;;----------------------------------------------------------------------------
 ;; One-liners
 ;;----------------------------------------------------------------------------
+(when (display-graphic-p)
+  (server-start)
+  )
 (desktop-save-mode 0) ;; save desktop config on exit if save-mode is 1
 (setq revert-without-query '(".pdf")) ;; reload *pdf's without asking
 (setq apropos-sort-by-scores t) ;; Apropos sorts results by relevancy
