@@ -34,11 +34,11 @@
 ;; Other-window 
 (global-set-key (kbd "M-o") 'other-window)
 
-;; (windmove-default-keybindings) --> S-<left> for moving between windows
-(global-set-key (kbd "s-.") 'windmove-up)
-(global-set-key (kbd "s-e") 'windmove-down)
-(global-set-key (kbd "s-o") 'windmove-left)
-(global-set-key (kbd "s-u") 'windmove-right)
+(windmove-default-keybindings);; --> S-<left> for moving between windows
+;;(global-set-key (kbd "s-.") 'windmove-up)
+;;(global-set-key (kbd "s-e") 'windmove-down)
+;;(global-set-key (kbd "s-o") 'windmove-left)
+;;(global-set-key (kbd "s-u") 'windmove-right)
 
 ;; move buffers; uses functions from lisp/init-buffer-move.el
 ;;(global-set-key (kbd "C-c C-x c")  'buf-move-up)

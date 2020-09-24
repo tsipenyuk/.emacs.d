@@ -41,12 +41,11 @@
 (setq calendar-week-start-day 1)
 (setq org-log-done t)
 (setq org-agenda-files (list "~/gdrive/org/gtd.org"
-			     "~/gdrive/org/inbox.org"
                              "~/gdrive/org/tickler.org"))
 
 (setq org-capture-templates
       '(("t" "Todo [inbox]" entry
-	 (file+headline "~/gdrive/org/inbox.org" "Tasks")
+	 (file+headline "~/gdrive/org/gtd.org" "Tasks")
 	 "* TODO %i%? \n %U")
 	("T" "Tickler" entry
 	 (file+headline "~/gdrive/org/tickler.org" "Tickler")
@@ -90,29 +89,10 @@
       '(("c" . "My Custom Agendas")
 	("cl" "Letters" tags-todo "letters"
          ((org-agenda-overriding-header "Letters")))
-	("chb" "home_b" tags-todo "home_b"
-         ((org-agenda-overriding-header "home_b")))
-	("chm" "home_m" tags-todo "home_m"
-         ((org-agenda-overriding-header "home_m")))
-	("cm" "Movies" tags-todo "movies"
-         ((org-agenda-overriding-header "Movies")))
-	("cb" "Books" tags-todo "books"
-         ((org-agenda-overriding-header "Books")))
-	("co" "Office" tags-todo "office"
-         ((org-agenda-overriding-header "office")))
-	("cw" "Work" tags-todo "work"
-         ((org-agenda-overriding-header "work")))
-	("cv" "Vacation" tags-todo "vacation"
-         ((org-agenda-overriding-header "Vacation")))
-	("cs" "Shopping" tags-todo "shopping"
-         ((org-agenda-overriding-header "shopping")))
-	("cr" "Projects" tags-todo "PROJECT"
-         ((org-agenda-overriding-header "Projects")))
-	("ce" "Errands" tags-todo "errands"
-         ((org-agenda-overriding-header "Errands")))
+	("cm" "munich" tags-todo "munich"
+         ((org-agenda-overriding-header "munich")))
 	))
 
-(find-file "~/gdrive/org/inbox.org")
 (find-file "~/gdrive/org/gtd.org")
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -25,6 +25,7 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 (require 'init-eshell)
+
 (require 'init-buffer-move)
 (require 'init-column-marker)
 (require 'init-idomenu)
@@ -42,6 +43,9 @@
 (require 'init-windows)
 (require 'init-w3m)
 
+
+(require 'font-latex)
+(require 'init-auctex)
 
 ;;----------------------------------------------------------------------------
 ;; Test packages
@@ -139,7 +143,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(initial-buffer-choice 'eshell))
+ '(initial-buffer-choice 'eshell)
 
-;;(add-hook 'after-init-hook (lambda () (previous-buffer)))
+ ;; latex fonts
+ '(font-latex-script-display (quote ((raise -0.0) raise 0.0)))
+ '(initial-buffer-choice (quote eshell))
+ '(package-selected-packages
+   (quote
+    (w3m switch-window pdf-tools writeroom-mode origami org markdown-mode helm-bibtex julia-repl julia-mode auctex fullframe seq))))
 
