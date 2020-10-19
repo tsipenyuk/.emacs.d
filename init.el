@@ -44,8 +44,11 @@
 (require 'init-w3m)
 
 
-(require 'font-latex)
+;;(require 'font-latex) # probably obsolete, incorporated into init-auctex
 (require 'init-auctex)
+(require 'init-outline)
+
+(require-package 'jupyter)
 
 ;;----------------------------------------------------------------------------
 ;; Test packages
@@ -53,8 +56,25 @@
 ;;(require-package 'centered-window) ;; Manual install needed? Available obsolete?
 ;;(require 'centered-window-mode)
 ;;(centered-window-mode t)
+(when (executable-find "ipython3")
+  (setq python-shell-interpreter "ipython3"))
 
 (require 'init-arxiv-fetcher)
+
+;; Folding mode, see https://www.emacswiki.org/emacs/FoldingMode
+(require 'init-folding)
+
+;; Edit emacs -- client
+(require 'init-edit-emacs)
+(require-package 'gmail-message-mode)
+;; M-x package-install RET gmail-message-mode
+
+;;; org-mime for jupyter mime svg+xml output -- deprecated 2020-10-15
+;;(require-package 'org-mime)
+
+;;; vterm for julia -- deprecated 2020-10-15
+;;(use-package vterm
+;;    :ensure t)
 
 ;; Add pdv-to-rut input method -----------------------------------------------
 ;; Modified variant of /usr/local/share/emacs/26.3/lisp/leim/quail/.. 
@@ -82,7 +102,7 @@
     (while (< (current-column) 80)
       (insert-char char))))
 
-
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;;----------------------------------------------------------------------------
 ;; One-liners
@@ -90,14 +110,22 @@
 (when (display-graphic-p)
   (server-start)
   )
-(desktop-save-mode 0) ;; save desktop config on exit if save-mode is 1
+(desktop-save-mode 1) ;; save desktop config on exit if save-mode is 1
 (setq revert-without-query '(".pdf")) ;; reload *pdf's without asking
 (setq apropos-sort-by-scores t) ;; Apropos sorts results by relevancy
 
+;; key remappings --------------------------------------------------------------
+;; Digit argument
+(global-set-key (kbd "C-*") (kbd "C-8"))
+(global-set-key (kbd "M-*") (kbd "M-8"))
+(global-set-key (kbd "C-M-*") (kbd "C-M-8"))
 
 ;; Custom vertical scroll
 (define-key global-map (kbd "M-p") (kbd "C-u 8 C-p C-l"))
 (define-key global-map (kbd "M-n") (kbd "C-u 8 C-n C-l"))
+
+;; imenu
+(global-set-key (kbd "M-i") 'imenu)
 
 ;; Org-scrum
 ;;(require 'init-org-scrum)

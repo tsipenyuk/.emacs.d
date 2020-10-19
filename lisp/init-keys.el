@@ -28,9 +28,6 @@
 (global-set-key (kbd "C-{") 'backward-paragraph)
 (global-set-key (kbd "C-}") 'forward-paragraph)
 
-;; try efficient movement
-(global-set-key (kbd "C-*") (kbd "C-8"))
-
 ;; Other-window 
 (global-set-key (kbd "M-o") 'other-window)
 

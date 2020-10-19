@@ -5,8 +5,8 @@
 (require-package 'auctex)
 
 ;;; Adjust for each system
-(load "/home/at/.emacs.d/elpa-26.3/auctex-12.2.4/auctex.el" nil t t)        
-(load "/home/at/.emacs.d/elpa-26.3/auctex-12.2.4/preview.el" nil t t) 
+(load "/home/at/.emacs.d/elpa-27.1/auctex-12.2.5/auctex.el" nil t t)        
+(load "/home/at/.emacs.d/elpa-27.1/auctex-12.2.5/preview.el" nil t t) 
 
 ;; Custom settings
 (with-eval-after-load "latex"
