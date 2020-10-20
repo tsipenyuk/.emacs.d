@@ -19,6 +19,7 @@
 /org-clock-save.el
 /TODO
 
+
 # latex files
 *.aux
 *.log
@@ -29,3 +30,6 @@
 # Image-dired
 image-dired/*
 *.jpg
+
+recentf
+/url

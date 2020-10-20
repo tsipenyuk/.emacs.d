@@ -2,7 +2,9 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- 'nil)
+ '((".google.com"
+  [url-cookie "NID" "204=UcfIpzcnhklugG6m_j1xpOekSpLRLqIq1-lkkWzudHrOK82rQ3WBccDVSfpEp_xY_K8FV1pF-h1bB9KbTV7NfpXhwciDE4BrPijQ1JStxDuJHtjDrpECi-S8VYamxDnhVIw3S1is3CqeyPmjCcVH7HVekzjuRUnCFKuhV6xYGp8" "Tue, 20-Apr-2021 10:49:51 GMT" "/" ".google.com" nil]))
+)
 (setq url-cookie-secure-storage
  'nil)
 

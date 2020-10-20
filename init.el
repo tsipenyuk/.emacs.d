@@ -30,6 +30,7 @@
 (require 'init-column-marker)
 (require 'init-idomenu)
 (require 'init-julia)
+(require 'init-helm)
 (require 'init-helm-bibtex)
 (require 'init-keys)
 (require 'init-lilypond)
@@ -77,7 +78,7 @@
 ;;    :ensure t)
 
 ;; Add pdv-to-rut input method -----------------------------------------------
-;; Modified variant of /usr/local/share/emacs/26.3/lisp/leim/quail/.. 
+;; Modified variant of /usr/local/share/emacs/26.3/lisp/leim/quail/..
 (require 'pdv-to-rut)
 
 ;; This is awful, but does the job. Created as described in
@@ -103,6 +104,21 @@
       (insert-char char))))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; emacs-w3m as default browser
+(setq browse-url-browser-function 'w3m-browse-url)
+
+;; Help buffer commands
+(define-key help-mode-map (kbd "b") 'help-go-back)
+(define-key help-mode-map (kbd "f") 'help-go-forward)
+
+;;; open with chrome
+(defun org-open-at-point-with-chrome ()
+  (interactive)
+  (let ((browse-url-browser-function 'browse-url-chrome))
+    (org-open-at-point )))
+
+(define-key org-mode-map (kbd "C-c C-;") 'org-open-at-point-with-chrome)
 
 ;;----------------------------------------------------------------------------
 ;; One-liners
@@ -179,4 +195,3 @@
  '(package-selected-packages
    (quote
     (w3m switch-window pdf-tools writeroom-mode origami org markdown-mode helm-bibtex julia-repl julia-mode auctex fullframe seq))))
-

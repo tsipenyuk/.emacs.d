@@ -5,7 +5,6 @@
 ;;; Code:
 
 (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
-(add-hook 'julia-mode-hook #'outline-minor-mode)
 
 (global-unset-key "\C-o")
 
