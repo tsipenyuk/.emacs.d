@@ -26,7 +26,7 @@
 ;; Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 ;; 02111-1307, USA.
 
-;;; Commentary:
+;; Commentary:
 
 ;; This file is for lazy people wanting to swap buffers without
 ;; typing C-x b on each window. This is useful when you have :
@@ -61,7 +61,7 @@
 
 ;;(global-set-key (kbd "C-c C-x c")  'buf-move-up)
 ;;(global-set-key (kbd "C-c C-x t")  'buf-move-down)
-;;(global-set-key (kbd "C-c C-x h")  'buf-move-left)
+;;(global-set-key (kbd "C-c C-a")  'buf-move-left)
 ;(;global-set-key (kbd "C-c C-x n")  'buf-move-right)
 
 
@@ -136,6 +136,11 @@ one, an error is signaled."
       ;; move this one to top
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
+
+(global-set-key (kbd "C-c C-x C-.")  'buf-move-up)
+(global-set-key (kbd "C-c C-x C-e")  'buf-move-down)
+(global-set-key (kbd "C-c C-x C-o")  'buf-move-left)
+(global-set-key (kbd "C-c C-x C-u")  'buf-move-right)
 
 (provide 'init-buffer-move)
 ;;; buffer-move.el ends here

@@ -1,4 +1,4 @@
-;;; init-column-marker.el --- Configure column-marker -*- lexical-binding: t -*-
+;; init-column-marker.el --- Configure column-marker -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

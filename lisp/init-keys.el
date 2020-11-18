@@ -23,8 +23,8 @@
 (global-set-key (kbd "H-b") (kbd "0"))
 
 ;; rebind paragraph and buffer movement
-(global-set-key (kbd "C-x C-{") 'beginning-of-buffer)
-(global-set-key (kbd "C-x C-}") 'end-of-buffer)
+(global-set-key (kbd "C-,") 'beginning-of-buffer)
+(global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-{") 'backward-paragraph)
 (global-set-key (kbd "C-}") 'forward-paragraph)
 

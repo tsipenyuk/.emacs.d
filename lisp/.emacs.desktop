@@ -1,0 +1,175 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Tue Oct 20 13:50:57 2020
+;; Desktop file format version 208
+;; Emacs version 27.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (24462 53025 335043 469000) (desktop . "208") "at@bodhi-at" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-21-*-*-*-m-0-iso10646-1") (font-parameter . "Ubuntu Mono 16") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#657b83") (background-color . "#fdf6e3") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground . "#657b83") (scroll-bar-background . "#657b83") (menu-bar-lines . 0) (tab-bar-lines . 0) (height . 65) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen . fullboth) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . light) (cursor-color . "#657b83") (environment) (last-focus-update . t) (sticky) (fullscreen-restore . maximized) (tabs (current-tab (name . "job-hunting.org") (explicit-name))) (frameset--id . "9B0D-0D88-D05B-2385") (frameset--mini t . t) (width . 231) (modeline . t) (unsplittable) (left . 0) (top . 0) (icon-name) (display . ":0.0") (explicit-name)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 88) (min-pixel-width . 220) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 88) (min-pixel-height-safe . 22) (min-pixel-width-safe . 44)) hc (pixel-width . 2560) (pixel-height . 1418) (total-width . 233) (total-height . 64) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1284) (pixel-height . 1418) (total-width . 117) (total-height . 64) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Warnings*" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 1084) (start . 1)) (prev-buffers ("*Warnings*" 1 1084) ("init-org2blog.el" 1 276) ("init.el" 1 1604) ("*eshell*" 22937 25995) ("*Help*" 1 352) ("init-elpa.el" 1 1199) ("init-utils.el" 1 1) ("*Packages*" 473470 476355) ("mastering-emacs.org" 1 1725) ("*Bookmark List*" 1 1) (".gitignore" 1 278) ("*Org Attach*" 1 1) ("*Disabled Command*" 1 1) ("gtd.org" 1 1))) (leaf (last . t) (pixel-width . 1276) (pixel-height . 1418) (total-width . 116) (total-height . 64) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Org2Blog README (COPY)*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 12116) (start . 10459)) (prev-buffers ("*w3m*" 1 115) ("*Org2Blog README (COPY)*" 10459 12116) ("*Help*" 1 1)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(#("org" 0 3 (isearch-regexp-function nil isearch-case-fold-search t)) #("link" 0 4 (isearch-regexp-function nil isearch-case-fold-search t)) #("insp" 0 4 (isearch-regexp-function nil isearch-case-fold-search t)) #("usage" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("g" 0 1 (isearch-regexp-function nil isearch-case-fold-search t)) #("goto" 0 4 (isearch-regexp-function nil isearch-case-fold-search t)) #("require-p" 0 9 (isearch-regexp-function nil isearch-case-fold-search t)) #("org2b" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("gre" 0 3 (isearch-regexp-function nil isearch-case-fold-search t)) #("vap" 0 3 (isearch-regexp-function nil isearch-case-fold-search t)) #("Good" 0 4 (isearch-regexp-function nil isearch-case-fold-search nil)) #("Zeu" 0 3 (isearch-regexp-function nil isearch-case-fold-search nil)) #("envir" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("seconda" 0 7 (isearch-regexp-function nil isearch-case-fold-search t)) #("M " 0 2 (isearch-regexp-function nil isearch-case-fold-search nil)) #("browse" 0 6 (isearch-regexp-function nil isearch-case-fold-search t))))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/at/.emacs.d/lisp/init-org2blog.el" "/home/at/.emacs.d/init.el" "/home/at/.emacs.d/lisp/init-elpa.el" "/home/at/.emacs.d/lisp/init-utils.el" "/home/at/.emacs.d/init.el" "/home/at/gdrive/org/references/books/mastering-emacs.org" "/home/at/gdrive/bewerbungen/soundhound--software-engineer-voice-ai/application.tex" "/home/at/gdrive/bewerbungen/soundhound--software-engineer-voice-ai/application.pdf" "/home/at/.emacs.d/recentf" "/home/at/.emacs.d/.gitignore" "/home/at/.emacs.d/lisp/init-outline.el" "/home/at/.emacs.d/init.el" "/home/at/.emacs.d/lisp/init-helm.el" "/home/at/.emacs.d/lisp/init-w3m.el" "/home/at/.emacs.d/init.el" "/home/at/gdrive/org/references/job-hunting.org" "/home/at/.emacs.d/init.el"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/lisp/init-org2blog.el"
+  "init-org2blog.el"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  276
+  '(128 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 52560 24404 654000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring (233 201 128 127 125 1))))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  1604
+  '(1604 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 52358 586261 869000) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1262 1242 714 1577 1604 1604 1604 1577 4112 4084 4318 4289 4112 4246 4105 4210))))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/lisp/init-elpa.el"
+  "init-elpa.el"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  1199
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 51788 528108 213000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/lisp/init-utils.el"
+  "init-utils.el"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 24462 51757 875905 479000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/gdrive/org/references/job-hunting.org"
+  "job-hunting.org"
+  'org-mode
+  '(TeX-PDF-mode)
+  987
+  '(1360 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 51425 363282 368000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring (2432 1360 918 683 469 288))))
+
+(desktop-create-buffer 208
+  "/home/at/gdrive/org/references/books/mastering-emacs.org"
+  "mastering-emacs.org"
+  'org-mode
+  '(TeX-PDF-mode)
+  1725
+  '(1797 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 46533 967837 537000) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring (1723 1723 1760 1760 1797 1723 1 1723))))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(TeX-PDF-mode)
+  278
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 24462 41863 517734 468000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (187 270 1 1))))
+
+(desktop-create-buffer 208
+  "/usr/local/share/emacs/27.1/lisp/net/browse-url.el.gz"
+  "browse-url.el.gz"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  67697
+  '(29804 nil)
+  t
+  nil
+  '((buffer-display-time 24462 41272 263203 591000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/usr/local/share/emacs/27.1/lisp/org/org.el.gz"
+  "org.el.gz"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  337146
+  '(336676 nil)
+  t
+  nil
+  '((buffer-display-time 24462 40421 753907 641000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "*info*"
+  'Info-mode
+  '(TeX-PDF-mode)
+  56334
+  '(nil nil)
+  t
+  '("/usr/local/share/info/emacs" "Distrib" nil)
+  '((tab-width . 8) (buffer-display-time 24462 40306 814535 407000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/gdrive/org/gtd.org"
+  "gtd.org"
+  'org-mode
+  '(TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 24462 40065 233988 66000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/gdrive/org/tickler.org"
+  "tickler.org"
+  'org-mode
+  '(TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/at/.emacs.d/elpa-27.1/org2blog-20200814.543/org2blog.el"
+  "org2blog.el"
+  'emacs-lisp-mode
+  '(eldoc-mode TeX-PDF-mode)
+  35580
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+

@@ -126,3 +126,5 @@ Call a second time to restore the original window configuration."
 
 (provide 'init-windows)
 ;;; init-windows.el ends here
+
+
