@@ -1,35 +1,21 @@
-\#*
-*.elc
-*~
-.*.lock
+# Ignore everything
+*
 
-/.emacs.desktop
-/bookmarks
+# Do not ignore setup files...
+!.gitignore
+!init.el
+!config.org
+!README.org
 
-/auto-save-list
-#/bookmarks
-/custom.el
-/elpa
-/elpa-*
-/eshell
-/ido.last
-/.session
-/session.*
-/.org-id-locations
-/org-clock-save.el
-/TODO
+# Do not ignore startup splash...
+!img/dashLogo.png
 
+# Do not ignore custom packages...
+!custom.el
+!lisp/pdv-to-rut.el
+!site-lisp/lilypond/*
 
-# latex files
-*.aux
-*.log
-*.out
-*.pdf
-*.nfs*
-
-# Image-dired
-image-dired/*
-*.jpg
-
-recentf
-/url
+# Example: how to not ignore stuff
+#!*/
+#!*/a/b/file1.txt
+#!*/a/b/c/*
