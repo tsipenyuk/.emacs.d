@@ -174,82 +174,81 @@ remove the entire section if you do not wish to use =exwm=.
 ** exwm
 *** Installation
 I have added a few additional simulation commands using [[https://www.reddit.com/r/emacs/comments/c2i3b5/exwmsimulationkeys_notation/][this answer from AptC34]].
-TODO: change buffer names to something meaningful.
 #+BEGIN_SRC emacs-lisp
   (use-package exwm
     :ensure t
     :config
 
-      ;; necessary to configure exwm manually
-      (require 'exwm-config)
+    ;; necessary to configure exwm manually
+    (require 'exwm-config)
 
-      ;; fringe size, most people prefer 1 
-      (fringe-mode 3)
-      
-      ;; emacs as a daemon, use "emacsclient <filename>" to seamlessly edit files from the terminal directly in the exwm instance
-      (server-start)
+    ;; fringe size, most people prefer 1 
+    (fringe-mode 3)
 
-      ;; this fixes issues with ido mode, if you use helm, get rid of it
-      (exwm-config-ido)
+    ;; emacs as a daemon, use "emacsclient <filename>" to seamlessly edit files from the terminal directly in the exwm instance
+    (server-start)
 
-      ;; a number between 1 and 9, exwm creates workspaces dynamically so I like starting out with 1
-      (setq exwm-workspace-number 1)
+    ;; this fixes issues with ido mode, if you use helm, get rid of it
+    (exwm-config-ido)
 
-      ;; this is a way to declare truly global/always working keybindings
-      ;; this is a nifty way to go back from char mode to line mode without using the mouse
-      (exwm-input-set-key (kbd "s-r") #'exwm-reset) ;; char to line mode
-      (exwm-input-set-key (kbd "s-t") #'exwm-input-release-keyboard) ;; line to char mode
-      (exwm-input-set-key (kbd "s-k") #'exwm-workspace-delete)
-      (exwm-input-set-key (kbd "s-w") #'exwm-workspace-swap)
+    ;; a number between 1 and 9, exwm creates workspaces dynamically so I like starting out with 1
+    (setq exwm-workspace-number 1)
 
-      ;; the next loop will bind s-<number> to switch to the corresponding workspace
-      (dotimes (i 10)
-        (exwm-input-set-key (kbd (format "s-%d" i))
-                            `(lambda ()
-                               (interactive)
-                               (exwm-workspace-switch-create ,i))))
+    ;; this is a way to declare truly global/always working keybindings
+    ;; this is a nifty way to go back from char mode to line mode without using the mouse
+    (exwm-input-set-key (kbd "s-r") #'exwm-reset) ;; char to line mode
+    (exwm-input-set-key (kbd "s-t") #'exwm-input-release-keyboard) ;; line to char mode
+    (exwm-input-set-key (kbd "s-k") #'exwm-workspace-delete)
+    (exwm-input-set-key (kbd "s-w") #'exwm-workspace-swap)
 
-      ;; the simplest launcher, I keep it in only if dmenu eventually stopped working or something
-      (exwm-input-set-key (kbd "s-&")
-                          (lambda (command)
-                            (interactive (list (read-shell-command "$ ")))
-                            (start-process-shell-command command nil command)))
+    ;; the next loop will bind s-<number> to switch to the corresponding workspace
+    (dotimes (i 10)
+      (exwm-input-set-key (kbd (format "s-%d" i))
+                          `(lambda ()
+                             (interactive)
+                             (exwm-workspace-switch-create ,i))))
 
-      ;; an easy way to make keybindings work *only* in line mode
-      (push ?\C-q exwm-input-prefix-keys)
-      (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
+    ;; the simplest launcher, I keep it in only if dmenu eventually stopped working or something
+    (exwm-input-set-key (kbd "s-&")
+                        (lambda (command)
+                          (interactive (list (read-shell-command "$ ")))
+                          (start-process-shell-command command nil command)))
 
-      ;; simulation keys are keys that exwm will send to the exwm buffer upon inputting a key combination
-      (exwm-input-set-simulation-keys
-       '(
-         ;; movement
-         ([?\C-b] . left)
-         ([?\M-b] . C-left)
-         ([?\C-f] . right)
-         ([?\M-f] . C-right)
-         ([?\C-p] . up)
-         ([?\C-n] . down)
-         ([?\C-a] . home)
-         ([?\C-e] . end)
-         ([?\M-v] . prior)
-         ([?\C-v] . next)
-         ([?\C-d] . delete)
-         ([?\C-k] . (S-end delete))
-         ;; cut/copy/paste/delete word
-         ([?\C-w] . ?\C-x)
-         ([?\M-w] . ?\C-c)
-         ([?\C-y] . ?\C-v)
-         ([?\M-d] . [C-S-right delete])
-         ;; undo
-         ;; search
-         ([?\C-s] . ?\C-f)
-	 ;; new tab/close tab for google chrome
-        ([?\C-e] . ?\C-t)
-        ([?\C-u] . ?\C-w)
-        ))
+    ;; an easy way to make keybindings work *only* in line mode
+    (push ?\C-q exwm-input-prefix-keys)
+    (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
 
-      ;; this little bit will make sure that XF86 keys work in exwm buffers as well
-      (dolist (k '(XF86AudioLowerVolume
+    ;; simulation keys are keys that exwm will send to the exwm buffer upon inputting a key combination
+    (exwm-input-set-simulation-keys
+     '(
+       ;; movement
+       ([?\C-b] . left)
+       ([?\M-b] . C-left)
+       ([?\C-f] . right)
+       ([?\M-f] . C-right)
+       ([?\C-p] . up)
+       ([?\C-n] . down)
+       ([?\C-a] . home)
+       ([?\C-e] . end)
+       ([?\M-v] . prior)
+       ([?\C-v] . next)
+       ([?\C-d] . delete)
+       ([?\C-k] . (S-end delete))
+       ;; cut/copy/paste/delete word
+       ([?\C-w] . ?\C-x)
+       ([?\M-w] . ?\C-c)
+       ([?\C-y] . ?\C-v)
+       ([?\M-d] . [C-S-right delete])
+       ;; undo
+       ;; search
+       ([?\C-s] . ?\C-f)
+       ;; new tab/close tab for google chrome
+       ([?\C-e] . ?\C-t)
+       ([?\C-u] . ?\C-w)
+       ))
+
+    ;; this little bit will make sure that XF86 keys work in exwm buffers as well
+    (dolist (k '(XF86AudioLowerVolume
                  XF86AudioRaiseVolume
                  XF86PowerOff
                  XF86AudioMute
@@ -263,9 +262,14 @@ TODO: change buffer names to something meaningful.
                  Scroll_Lock
                  print))
       (cl-pushnew k exwm-input-prefix-keys))
-      
-      ;; this just enables exwm, it started automatically once everything is ready
-      (exwm-enable))
+
+    ;; readable buffer names
+    (defun exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
+    (add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
+
+
+    ;; this just enables exwm, it started automatically once everything is ready
+    (exwm-enable))
 #+END_SRC
 
 ** Launchers
