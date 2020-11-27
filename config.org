@@ -699,8 +699,10 @@ You can easily add and remove pairs yourself, have a look.
 
 And now to enable it
 #+BEGIN_SRC emacs-lisp
-(electric-pair-mode t)
+;;(electric-pair-mode t)
 #+END_SRC
+I have tried it out and it just gets in my way.
+
 ** Expand region
 A pretty simple package, takes your cursor and semantically expands
 the region, so words, sentences, maybe the contents of some
@@ -1055,6 +1057,15 @@ Since I don't know why, I use =require= for now.
   (add-hook 'lilypond-mode-hook 'yas-minor-mode)
   (add-hook 'lilypond-mode-hook 'flycheck-mode)
 #+END_SRC
+*** w3m
+I am still struggling to properly navigate between qutebrowser and exwm,
+somehow =line= and =char= modes do not work as expected. In the meantime,
+I continue using w3m for quick lookup.
+#+BEGIN_SRC emacs-lisp
+  (use-package w3m
+    :ensure t)
+#+END_SRC
+
 * Git integration
 Countless are the times where I opened ansi-term to use =git= on something.
 These times are also something that I'd prefer stay in the past, since =magit= is
