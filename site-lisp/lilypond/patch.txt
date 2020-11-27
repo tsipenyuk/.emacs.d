@@ -1,0 +1,18 @@
+--- lilypond-mode.el-orig	2013-09-16 08:19:35.558995518 +0200
++++ lilypond-mode.el	2013-09-16 08:20:12.210996354 +0200
+@@ -286,13 +286,13 @@
+ (defun LilyPond-compile-file (command name)
+   ;; We maybe should know what we run here (Lily, lilypond, tex)
+   ;; and adjust our error-matching regex ?
+-  (compile-internal
++  (compilation-start
+    (if (eq LilyPond-command-current 'LilyPond-command-master)
+        command
+      ;; use temporary directory for Commands on Buffer/Region
+      ;; hm.. the directory is set twice, first to default-dir
+      (concat "cd " (LilyPond-temp-directory) "; " command))
+-   "No more errors" name))
++   'LilyPond-mode #'(lambda (mode-name) "*LilyPond-compile*")))
+ 
+ ;; do we still need this, now that we're using compile-internal?
+ (defun LilyPond-save-buffer ()

@@ -56,6 +56,7 @@ nice to have some external software to make our life easier.
 
 * Personalize load-path etc.
 Non-melpa packages are stored in =lisp= and =site-lisp=.
+I am not certain whether I want to store anything in the =custom.el= at this point.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
   (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
@@ -552,12 +553,13 @@ This annoyed me so much I wrote these two, they take care of it.
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 
-** swiper and why is the default search so lame
-I like me some searching, the default search is very meh. In emacs, you mostly use search to get around your buffer, much like with avy, but sometimes it doesn't hurt to search for entire words or mode, swiper makes sure this is more efficient.
+** swiper is not quite for me
+I could not get into swiper --- maybe in the future.
+I am keeping it here as a reference.
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :ensure t
-    :bind ("C-s" . 'swiper))
+  ;;(use-package swiper
+  ;;  :ensure t
+  ;;  :bind ("C-s" . 'swiper))
 #+END_SRC
 
 ** buffers and why I hate list-buffers
@@ -642,8 +644,8 @@ I like =M-s= for it, same as =C-s= is for moving by searching string, now =M-s= 
 #+END_SRC
 
 ** Rebind paragraph and buffer movement
-The rebindings are at the end of the file, as I rewrite some of the
-Org bindings.
+The rebindings are at the end of the file, as they overwrite some of
+the Org bindings.
 * Minor conveniences
 Emacs is at it's best when it just does things for you, shows you the
 way, guides you so to speak.  This can be best achieved using a number
@@ -1009,14 +1011,25 @@ Each category also has additional settings.
       (add-hook 'julia-mode-hook 'company-mode))
 #+END_SRC
 *** TODO auctex
-Here,  =(use-package auctex)= does not work for some reason. Why?
-#+BEGIN_SRC emacs-lisp
-  (load (expand-file-name "elpa-27.1/auctex-12.2.5/auctex.el" user-emacs-directory))
-  (load (expand-file-name "elpa-27.1/auctex-12.2.5/preview.el" user-emacs-directory))  
-;;(require 'auctex)
+Neither  =(use-package auctex)= nor the installation using =list-packages= work
+for me correctly.
 
-  ;;(add-hook 'auctex-mode-hook 'yas-minor-mode)
-  ;;(add-hook 'auctex-mode-hook 'flycheck-mode)
+I install =auctex= as described on stackexchange, dowloading the source
+from 
+and running
+#+BEGIN_SRC bash
+  ./configure --prefix=$HOME/.emacs.d/site-lisp/auctex --with-lispdir=$HOME/.emacs.d/site-lisp/auctex --with-texmf-dir=$HOME/.texlive2019
+  make
+  make install
+#+END_SRC
+The package is loaded with
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (expand-file-name "site-lisp/auctex" user-emacs-directory))
+  (load "auctex.el" nil t t)
+  (load "preview-latex.el" nil t t)
+
+  (add-hook 'auctex-mode-hook 'yas-minor-mode)
+  (add-hook 'auctex-mode-hook 'flycheck-mode)
   ;;
   ;;(with-eval-after-load 'company
   ;;    (add-hook 'auctex-mode-hook 'company-mode))
@@ -1026,32 +1039,6 @@ Here,  =(use-package auctex)= does not work for some reason. Why?
   ;;  :config
   ;;    (require 'company)
   ;;    (add-to-list 'company-backends 'company-auctex))
-
-;;(with-eval-after-load "latex"(setq font-latex-fontify-script t)
-;;    (setq font-latex-script-display '((raise -0.0) raise 0.0))
-;;    (setq font-latex-math-face ((t (:foreground "#859900"))))
-;;    (setq font-lock-function-name-face ((t (:foreground "#268bd2"))))
-;;    (setq font-lock-variable-name-face ((t (:foreground "#268bd2")))) 
-;;    (setq font-latex-script-char-face ((t (:foreground "#859900")))) 
-;;    (setq font-latex-sectioning-0-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sectioning-1-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sectioning-2-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sectioning-3-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sectioning-4-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sectioning-5-face ((t (:foreground "#6c71c4"))))
-;;    (setq font-latex-sedate-face ((t (:foreground "#2aa198"))))
-;;    (setq font-latex-slide-title-face
-;;          ((t (:inherit :weight thin :height 1.0))))
-;;    (setq font-latex-string-face ((t (:foreground "#cb4b16"))))
-;;    (setq font-latex-subscript-face
-;;          ((t (:background "#eee8d5" :height 1.0 :foreground "#859900"))))
-;;    (setq font-latex-superscript-face
-;;          ((t (:background "#eee8d5" :height 1.0 :foreground "#859900"))))
-;;    (setq font-latex-verbatim-face
-;;        ((t (:inherit fixed-pitch
-;;                      :foreground "#2aa198"
-;;                      :weight normal
-;;                      :family "MathJax_Typewriter")))))
 #+END_SRC
 *** lilypond
 **** TODO add company

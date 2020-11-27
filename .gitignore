@@ -7,13 +7,17 @@
 !config.org
 !README.org
 
+#### Rework ####################################################################
+# The following code does not work as-is and needs to be restructured.
+# The corresponding files were added to the project explicitely
 # Do not ignore startup splash...
-!img/dashLogo.png
+!*/img/dashLogo.png
 
 # Do not ignore custom packages...
 !custom.el
-!lisp/pdv-to-rut.el
-!site-lisp/lilypond/*
+!*/lisp/pdv-to-rut.el
+!*/lisp/prose-mode.el
+!*/site-lisp/lilypond/*
 
 # Example: how to not ignore stuff
 #!*/
