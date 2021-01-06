@@ -526,6 +526,11 @@ You may not like it, thus disable it if you must, but it's pretty decent.
     :config
       (global-hungry-delete-mode))
 #+END_SRC
+** Other frame shortcut
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-,") 'other-frame)
+#+END_SRC
+
 ** Pdf-tools
 Better pdf-browsing than docview.
 #+BEGIN_SRC emacs-lisp
