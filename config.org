@@ -19,41 +19,6 @@ For the first startup, I recommend launching emacs in the tty.
 I have copied the dependencies from the UncleDavesEmacs setup for future 
 reference. As of yet, I am only using =exwm=, =xorg-server=, and trying to
 get into =qutebrowser=.
-** EXWM
-Since we are going to use emacs as our window manager, it would be
-nice to have some external software to make our life easier.
-*** From the package manager:
-- =xorg-server=, for obvious reasons. (there is no wayland support as of now)
-- =pulsemixer=, available from =https://github.com/GeorgeFilipkin/pulsemixer=.
-- =imagemagick=, if you are going to be using emacs to take screenshots.
-- =ibus-daemon=, if you need multiple keyboard input options (emacs handles them well on its own but ibus is nice).
-- =terminus-font=, for it to work out of the box, if you don't want terminus you need to edit your =init.el=.
-
-**** Optional
-- A browser (sadly, the built in xwidgets-webkit thingie is unreliable).
-- A composite manager (highly recommended, I personally use =compton=, the built in one does not work as intended.).
-- =noto-cjk=, for all the fonts imaginable.
-- =slock=, if you would like to lock the screen.
-
-** TRAMP
-*** From the package manager:
-- =sudo=, properly configured for your user.
-
-** EMMS
-*** From the package manager:
-- =mpd=, since we are going to be using EMMS for music playback, I recommend setting up a working mpd server.
-- =mpv=, for video playback.
-
-** Programming
-*** Package manager
-- =clang=, for c/c++ completion.
-- =sbcl=, for clisp completion and repl.
-- =virtualenv=, for python completion.
-- =lua=, for obvious reasons.
-
-*** pip
-- =pip install jedi flake8 autopep8=, here, a one line install.
-
 * Personalize load-path etc.
 Non-melpa packages are stored in =lisp= and =site-lisp=.
 I am not certain whether I want to store anything in the =custom.el= at this point.
@@ -82,7 +47,7 @@ I am not certain whether I want to store anything in the =custom.el= at this poi
     
       ;; larger font
       (set-face-attribute 'default nil :font "Ubuntu Mono 15" )
-      (set-frame-font "Ubuntu Mono 15" nil t))
+      (set-frame-font "Ubuntu Mono 18" nil t))
 
       ;; load theme
       (load-theme 'solarized-light t)
@@ -116,7 +81,7 @@ If you like using any of those, change =-1= to =1=.
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 #+END_SRC
 *** Disable bell
 This is annoying, remove this line if you like being visually reminded of events.
@@ -137,14 +102,6 @@ Besides, it's only used for programming.
 #+BEGIN_SRC emacs-lisp
   (when window-system (add-hook 'prog-mode-hook 'hl-line-mode))
 #+END_SRC
-*** Pretty symbols
-Changes =lambda= to an actual symbol and a few others as well, only in the GUI version though.
-#+BEGIN_SRC emacs-lisp
-  (when window-system
-        (use-package pretty-mode
-        :config
-        (global-pretty-mode t)))
-#+END_SRC
 
 ** Functionality
 *** TODO Disable backups and auto-saves
@@ -162,184 +119,9 @@ Change the values below from =nil= to =t= to turn on backups.
 (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
-*** Async
-Lets us use asynchronous processes wherever possible, pretty useful.
-#+BEGIN_SRC emacs-lisp
-  (use-package async
-    :init (dired-async-mode 1))
-#+END_SRC
-
 * Window Manager
-Everything regarding the WM or DE-like functionality is bundled here,
-remove the entire section if you do not wish to use =exwm=.
-** exwm
-*** Installation
-I have added a few additional simulation commands using [[https://www.reddit.com/r/emacs/comments/c2i3b5/exwmsimulationkeys_notation/][this answer from AptC34]].
-#+BEGIN_SRC emacs-lisp
-  (use-package exwm
-    :ensure t
-    :config
+** MacOs: focus frame in foreground
 
-    ;; necessary to configure exwm manually
-    (require 'exwm-config)
-
-    ;; fringe size, most people prefer 1 
-    (fringe-mode 3)
-
-    ;; emacs as a daemon, use "emacsclient <filename>" to seamlessly edit files from the terminal directly in the exwm instance
-    (server-start)
-
-    ;; this fixes issues with ido mode, if you use helm, get rid of it
-    (exwm-config-ido)
-
-    ;; a number between 1 and 9, exwm creates workspaces dynamically so I like starting out with 1
-    (setq exwm-workspace-number 1)
-
-    ;; this is a way to declare truly global/always working keybindings
-    ;; this is a nifty way to go back from char mode to line mode without using the mouse
-    (exwm-input-set-key (kbd "s-r") #'exwm-reset) ;; char to line mode
-    (exwm-input-set-key (kbd "s-t") #'exwm-input-release-keyboard) ;; line to char mode
-    (exwm-input-set-key (kbd "s-k") #'exwm-workspace-delete)
-    (exwm-input-set-key (kbd "s-w") #'exwm-workspace-swap)
-
-    ;; the next loop will bind s-<number> to switch to the corresponding workspace
-    (dotimes (i 10)
-      (exwm-input-set-key (kbd (format "s-%d" i))
-                          `(lambda ()
-                             (interactive)
-                             (exwm-workspace-switch-create ,i))))
-
-    ;; the simplest launcher, I keep it in only if dmenu eventually stopped working or something
-    (exwm-input-set-key (kbd "s-&")
-                        (lambda (command)
-                          (interactive (list (read-shell-command "$ ")))
-                          (start-process-shell-command command nil command)))
-
-    ;; an easy way to make keybindings work *only* in line mode
-    (push ?\C-q exwm-input-prefix-keys)
-    (define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
-
-    ;; simulation keys are keys that exwm will send to the exwm buffer upon inputting a key combination
-    (exwm-input-set-simulation-keys
-     '(
-       ;; movement
-       ([?\C-b] . left)
-       ([?\M-b] . C-left)
-       ([?\C-f] . right)
-       ([?\M-f] . C-right)
-       ([?\C-p] . up)
-       ([?\C-n] . down)
-       ([?\C-a] . home)
-       ([?\C-e] . end)
-       ([?\M-v] . prior)
-       ([?\C-v] . next)
-       ([?\C-d] . delete)
-       ([?\C-k] . (S-end delete))
-       ;; cut/copy/paste/delete word
-       ([?\C-w] . ?\C-x)
-       ([?\M-w] . ?\C-c)
-       ([?\C-y] . ?\C-v)
-       ([?\M-d] . [C-S-right delete])
-       ;; undo
-       ;; search
-       ([?\C-s] . ?\C-f)
-       ;; new tab/close tab for google chrome
-       ([?\C-e] . ?\C-t)
-       ([?\C-u] . ?\C-w)
-       ))
-
-    ;; this little bit will make sure that XF86 keys work in exwm buffers as well
-    (dolist (k '(XF86AudioLowerVolume
-                 XF86AudioRaiseVolume
-                 XF86PowerOff
-                 XF86AudioMute
-                 XF86AudioPlay
-                 XF86AudioStop
-                 XF86AudioPrev
-                 XF86AudioNext
-                 XF86ScreenSaver
-                 XF68Back
-                 XF86Forward
-                 Scroll_Lock
-                 print))
-      (cl-pushnew k exwm-input-prefix-keys))
-
-    ;; readable buffer names
-    (defun exwm-rename-buffer-to-title () (exwm-workspace-rename-buffer exwm-title))
-    (add-hook 'exwm-update-title-hook 'exwm-rename-buffer-to-title)
-
-
-    ;; this just enables exwm, it started automatically once everything is ready
-    (exwm-enable))
-#+END_SRC
-
-** Launchers
-Since I do not use a GUI launcher and do not have an external one like dmenu or rofi,
-I figured the best way to launch my most used applications would be direct emacsy
-keybindings.
-
-*** dmenu for emacs
-A nice large menu with its own cache for most launched applications.
-#+BEGIN_SRC emacs-lisp
-  (use-package dmenu
-    :bind
-      ("s-SPC" . 'dmenu))
-#+END_SRC
-
-*** Functions to start processes
-#+BEGIN_SRC emacs-lisp
-  (defun exwm-async-run (name)
-    (interactive)
-    (start-process name nil name))
-
-  (defun at/launch-insync ()
-    (interactive)
-    (exwm-async-run "insync"))
-
-  (defun at/launch-qute ()
-    (interactive)
-    (exwm-async-run "qutebrowser"))
-
-  (defun at/launch-browser ()
-    (interactive)
-    (exwm-async-run "google-chrome"))
-
-  (defun at/lock-screen ()
-    (interactive)
-    (exwm-async-run "slock"))
-#+END_SRC
-
-*** Reboot and shutdown
-Not quite sure yet how to properly start =sudo= processes.  I have
-used [[https://linux.byexamples.com/archives/315/how-to-shutdown-and-reboot-without-sudo-password/#:~:text=By%20adding%20suid%20mode%20to,run%20shutdown%20command%20as%20root.&text=Check%20out%20examples%20of%20chmod,run%20shutdown%20without%20needing%20sudo.&text=This%20seems%20to%20be%20proper,without%20needing%20to%20type%20password][this example]] to allow regular users to run the shutdown command.
-
-The last hook is supposed to shut down the machine after exiting
-emacs, as described [[https://emacs.stackexchange.com/questions/29919/shutting-down-computer-from-emacs-killing-gracefully-emacs-itself][here]].
-#+BEGIN_SRC emacs-lisp
-  (defun at/reboot ()
-    (interactive)
-    (exwm-async-run "reboot"))
-
-  (defun at/shutdown ()
-    (interactive)
-    (exwm-async-run "poweroff"))
-
-  ;;  It does not yet work for me. TODO: fix it.
-  ;;(add-hook 'kill-emacs-hook 'at/shutdown t)
-#+END_SRC
-
-TODO: Test on a blank machine whether =exwm-async-run "sudo shutdown
--h now"= does not require sudo password (also to check
-=/etc/sudoers=).
-
-*** Keybindings to start processes
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "s-i") 'at/launch-insync)
-  (global-set-key (kbd "s-g") 'at/launch-browser)
-  (global-set-key (kbd "s-q") 'at/launch-qute)
-  (global-set-key (kbd "s-l") 'at/lock-screen)
-  (global-set-key (kbd "s-!") 'at/shutdown)
-#+END_SRC
 
 * Projectile
 Projectile is an awesome project manager, mostly because it recognizes directories
@@ -456,7 +238,7 @@ I don't know why this is a thing, but asking me what shell to launch every singl
 time I open a terminal makes me want to slap babies, this gets rid of it.
 This goes without saying but you can replace bash with your shell of choice.
 #+BEGIN_SRC emacs-lisp
-  (defvar my-term-shell "/usr/bin/zsh")
+  (defvar my-term-shell "/bin/zsh")
   (defadvice ansi-term (before force-bash)
     (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
@@ -1012,59 +794,6 @@ Each category also has additional settings.
   (with-eval-after-load 'company
       (add-hook 'julia-mode-hook 'company-mode))
 #+END_SRC
-*** TODO auctex
-Neither  =(use-package auctex)= nor the installation using =list-packages= work
-for me correctly.
-
-I install =auctex= as described on stackexchange, dowloading the source
-from 
-and running
-#+BEGIN_SRC bash
-  ./configure --prefix=$HOME/.emacs.d/site-lisp/auctex --with-lispdir=$HOME/.emacs.d/site-lisp/auctex --with-texmf-dir=$HOME/.texlive2019
-  make
-  make install
-#+END_SRC
-The package is loaded with
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path (expand-file-name "site-lisp/auctex" user-emacs-directory))
-  (load "auctex.el" nil t t)
-  (load "preview-latex.el" nil t t)
-
-  (add-hook 'auctex-mode-hook 'yas-minor-mode)
-  (add-hook 'auctex-mode-hook 'flycheck-mode)
-  ;;
-  ;;(with-eval-after-load 'company
-  ;;    (add-hook 'auctex-mode-hook 'company-mode))
-  ;;
-  ;;(use-package company-auctex
-  ;;  :ensure t
-  ;;  :config
-  ;;    (require 'company)
-  ;;    (add-to-list 'company-backends 'company-auctex))
-#+END_SRC
-*** lilypond
-**** TODO add company
-Loading with use-package leads to =(error "tromey.com/80 Temporary failure in name resolution")= on startup.
-Since I don't know why, I use =require= for now.
-
-#+BEGIN_SRC emacs-lisp
-   (add-to-list 'load-path (expand-file-name "site-lisp/lilypond" user-emacs-directory))
-   (require 'lilypond-mode)
-   
-   (add-to-list 'auto-mode-alist '("\\.ly$" . lilypond-mode))
-   (add-to-list 'auto-mode-alist '("\\.ily$" . lylypond-mode))
-
-  (add-hook 'lilypond-mode-hook 'yas-minor-mode)
-  (add-hook 'lilypond-mode-hook 'flycheck-mode)
-#+END_SRC
-*** w3m
-I am still struggling to properly navigate between qutebrowser and exwm,
-somehow =line= and =char= modes do not work as expected. In the meantime,
-I continue using w3m for quick lookup.
-#+BEGIN_SRC emacs-lisp
-  (use-package w3m
-    :ensure t)
-#+END_SRC
 
 * Git integration
 Countless are the times where I opened ansi-term to use =git= on something.
@@ -1350,15 +1079,9 @@ I keep a Google Chrome keybinding "just in case".
   (define-key org-mode-map (kbd "C-c C-;") 'org-open-at-point-with-chrome)
 #+END_SRC
 
-* Launch at startup
-This needs to be modified (delayed startup), as 
-=qute= throws "no connection" error. =insync= works though.
-#+BEGIN_SRC emacs-lisp
-  ;;(at/launch-qute)
-  (exwm-async-run "insync")
-#+END_SRC
 * Further work
 ** TODO Integrate setup to .dotfiles bundle, e.g., as [[https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789][here]]
+
 
 
 
