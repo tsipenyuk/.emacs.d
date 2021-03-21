@@ -14,10 +14,13 @@
 !*/img/dashLogo.png
 
 # Do not ignore custom packages...
-!custom.el
+custom.el
 !*/lisp/pdv-to-rut.el
 !*/lisp/prose-mode.el
 !*/site-lisp/lilypond/*
+!*/site-lisp/dired+/*
+!*/site-lisp/org-to-xml+/*
+!*/site-lisp/run-current-file/*
 
 # Example: how to not ignore stuff
 #!*/

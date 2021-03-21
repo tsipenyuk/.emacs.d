@@ -46,8 +46,10 @@ I am not certain whether I want to store anything in the =custom.el= at this poi
       (setq solarized-height-plus-4 1.0)
     
       ;; larger font
-      (set-face-attribute 'default nil :font "Ubuntu Mono 15" )
-      (set-frame-font "Ubuntu Mono 18" nil t))
+      (set-face-attribute 'default nil :font "Ubuntu Mono 19" )
+      (set-face-attribute 'fixed-pitch nil :font "Ubuntu Mono 19" )
+      (set-face-attribute 'variable-pitch nil :font "Ubuntu Mono 19" )
+      (set-frame-font "Ubuntu Mono 19" nil t))
 
       ;; load theme
       (load-theme 'solarized-light t)
@@ -81,7 +83,7 @@ If you like using any of those, change =-1= to =1=.
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-;;(scroll-bar-mode -1)
+(scroll-bar-mode -1)
 #+END_SRC
 *** Disable bell
 This is annoying, remove this line if you like being visually reminded of events.
@@ -147,13 +149,24 @@ provides you with a quick look into your latest projects and files.
 Change the welcome message to whatever string you want and
 change the numbers to suit your liking, I find 5 to be enough.
 #+BEGIN_SRC emacs-lisp
-  (use-package dashboard
-    :config
-      (dashboard-setup-startup-hook)
-      (setq dashboard-startup-banner "~/.emacs.d/img/dashLogo.png")
-      (setq dashboard-items '((recents  . 5)
-                              (projects . 5)))
-      (setq dashboard-banner-logo-title "Hello there!"))
+   (use-package dashboard
+     :config
+       (dashboard-setup-startup-hook)
+       (setq dashboard-startup-banner "~/.emacs.d/img/dashLogo.png")
+       (setq dashboard-items '((recents  . 5)
+                               (projects . 5)))
+       (setq dashboard-banner-logo-title "Hello there!"))
+
+   ;; Read file as list of lines
+   ;; http://ergoemacs.org/emacs/elisp_read_file_content.html
+   (defun read-lines (filePath)
+     "Return a list of lines of a file at filePath."
+     (with-temp-buffer
+       (insert-file-contents filePath)
+       (split-string (buffer-string) "\n" t)))
+   ;; Use file as random footer message
+   ;; Created with quotes.org roam file
+   (setq dashboard-footer-messages (read-lines "~/.emacs.d/dashboard-quotes.txt"))
 #+END_SRC
 
 * Modeline
@@ -249,6 +262,16 @@ In loving memory of bspwm, Super + Enter opens a new terminal, old habits die ha
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "<s-return>") 'ansi-term)
 #+END_SRC
+* Adding PATH
+#+BEGIN_SRC emacs-lisp
+  (use-package exec-path-from-shell
+    :ensure t
+    :defer t)
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+;; used to have this instead:
+;;(add-to-list 'exec-path "~/.local/bin")
+#+END_SRC
 
 * Moving around emacs
 One of the most important things about a text editor is how efficient you manage
@@ -303,17 +326,14 @@ and most importantly, it annihilates a big issue I had with emacs. An alternativ
 however by default it also changes the behaviour of =C-x o= even if only 2 windows are open,
 this is bad, it also works less well with =exwm= for some reason.
 #+BEGIN_SRC emacs-lisp
-(use-package switch-window
-  :ensure t
-  :config
-    (setq switch-window-input-style 'minibuffer)
-    (setq switch-window-increase 4)
-    (setq switch-window-threshold 2)
-    (setq switch-window-shortcut-style 'qwerty)
-    (setq switch-window-qwerty-shortcuts
-        '("h" "t" "n" "s" "a" "o" "e" "u" "i"))
-  :bind
-    ([remap other-window] . switch-window))
+  (use-package ace-window
+    :ensure t
+    :config
+      (setq aw-background nil)
+      (setq aw-keys
+          '(?h ?t ?n ?s ?a ?o ?e ?u ?i)))
+
+  (global-set-key (kbd "M-o") 'ace-window)
 #+END_SRC
 
 *** Following window splits
@@ -423,17 +443,32 @@ I like =M-s= for it, same as =C-s= is for moving by searching string, now =M-s= 
     :ensure t
     :bind
       ("M-s" . avy-goto-char))
+  ;;(define-key dired-mode-map (kbd "M-s") 'avy-goto-char)
 #+END_SRC
 
 ** Rebind paragraph and buffer movement
-The rebindings are at the end of the file, as they overwrite some of
-the Org bindings.
+(I use the programmer Dvorak layout.)
+#+BEGIN_SRC emacs-lisp
+  (define-key org-mode-map (kbd "C-,") nil)
+  (global-set-key (kbd "C-,") 'beginning-of-buffer)
+  (global-set-key (kbd "C-.") 'end-of-buffer)
+  (global-set-key (kbd "C-{") 'backward-paragraph)
+  (global-set-key (kbd "C-}") 'forward-paragraph)
+#+END_SRC
+
 * Minor conveniences
 Emacs is at it's best when it just does things for you, shows you the
 way, guides you so to speak.  This can be best achieved using a number
 of small extensions. While on their own they might not be particularly
 impressive. Together they create a nice environment for you to work
 in.
+** Atomic chrome
+Used for text editing in Chrome browser.
+#+BEGIN_SRC emacs-lisp
+  (use-package atomic-chrome
+    :ensure t)
+  (atomic-chrome-start-server)
+#+END_SRC
 ** Beacon
 While changing buffers or workspaces, the first thing you do is look for your cursor.
 Unless you know its position, you can not move it efficiently. Every time you change
@@ -444,6 +479,16 @@ buffers, the current position of your cursor will be briefly highlighted now.
     :config
       (beacon-mode 1))
 #+END_SRC
+** Bind-key and Free-keys
+Useful to define key binding to some free key
+#+BEGIN_SRC emacs-lisp
+  (use-package free-keys
+    :ensure t)
+  (use-package bind-key
+    :ensure t)
+  (bind-key "C-h C-k" 'free-keys)
+#+END_SRC
+
 ** Configuration shortcuts
 *** Visiting the configuration
 Quickly edit =~/.emacs.d/config.org=
@@ -462,6 +507,25 @@ You can also manually invoke =config-reload=.
     (interactive)
     (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
   (global-set-key (kbd "C-c d") 'config-reload)
+#+END_SRC
+
+** Desktop save mode
+#+BEGIN_SRC emacs-lisp
+  (desktop-save-mode 1)
+#+END_SRC
+
+** Dired+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (expand-file-name "site-lisp/dired+" user-emacs-directory))
+  (require 'dired+)
+#+END_SRC
+
+** Emacs: Run Current File
+This =site-lisp= code from Xah Lee allows you to compile / run code from the file.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (expand-file-name "site-lisp/run-current-file" user-emacs-directory))
+  (require 'run-current-file)
+  (global-set-key (kbd "<f8>") 'xah-run-current-file) 
 #+END_SRC
 
 ** Electric
@@ -510,6 +574,17 @@ parentheses, it's awesome, try it out.
       (while (< (current-column) 72)
         (insert-char char))))
 #+END_SRC
+** Grep and occur keybindings
+Possibly: add Grep+ (enhanced Grep. By default, inserts word at point when =grep= is called).
+Longer lines of =grep= results are shortened as described in [[https://emacs.stackexchange.com/questions/37251/grep-view-limit-line-lengths][this stackexchange question]].
+#+BEGIN_SRC emacs-lisp
+  (grep-compute-defaults)
+  (grep-apply-setting 'grep-find-template
+    (concat grep-find-template " | cut -c 1-1000"))
+  (bind-key "C-!" 'rgrep)
+  (global-set-key (kbd "C-:") 'occur)
+#+END_SRC
+
 ** Backwards / Forwards in help-mode-map
 #+BEGIN_SRC emacs-lisp
   (define-key help-mode-map (kbd "b") 'help-go-back)
@@ -528,7 +603,8 @@ You may not like it, thus disable it if you must, but it's pretty decent.
 #+END_SRC
 ** Other frame shortcut
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x C-,") 'other-frame)
+  (global-set-key (kbd "C-=") 'other-frame)
+  ;;(global-set-key (kbd "C-o") 'other-window)
 #+END_SRC
 
 ** Pdf-tools
@@ -637,12 +713,11 @@ The default is 60, I personally need more sometimes.
 ** popup-kill-ring
 Out of all the packages I tried out, this one, being the simplest, appealed to me most.
 With a simple M-y you can now browse your kill-ring like browsing autocompletion items.
-C-n and C-p totally work for this.
+C-n and C-p totally work for this. Disabled: lags and doesn't work in the minibuffer.
 #+BEGIN_SRC emacs-lisp
-  (use-package popup-kill-ring
-    :ensure t
-    :bind ("M-y" . popup-kill-ring))
-
+;;  (use-package popup-kill-ring
+;;    :ensure t
+;;    :bind ("M-y" . popup-kill-ring))
 #+END_SRC
 
 
@@ -650,12 +725,10 @@ C-n and C-p totally work for this.
   Minor, non-completion related settings and plugins for writing code.
 ** yasnippet
 #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :config
-        (use-package yasnippet-snippets
-          :ensure t)
-        (yas-reload-all))
+  (use-package yasnippet :ensure t :defer 30
+    :config (yas-global-mode t)
+    (setq yas-fallback-behavior 'indent-line
+          yas-snippet-dirs '("~/.emacs.d/snippets/angular/")))
 #+END_SRC
 ** flycheck
 #+BEGIN_SRC emacs-lisp
@@ -682,11 +755,22 @@ I prefer =C-n= and =C-p= to move around the items, so I remap those accordingly.
     (define-key company-active-map (kbd "C-p") #'company-select-previous)
     (define-key company-active-map (kbd "SPC") #'company-abort))
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package tern :ensure t :defer t
+  :init (add-hook 'javascript-hook 'tern-mode)
+  (add-to-list 'company-backends 'company-tern))
+#+END_SRC
 ** specific languages
 Be it for code or prose, completion is a must.
 As of yet, I only use =company= completion.
 
 Each category also has additional settings.
+*** angular
+#+BEGIN_SRC emacs-lisp
+  (use-package ng2-mode :ensure t :defer t)
+  (use-package stylus-mode :ensure t :defer t)
+#+END_SRC
 *** c/c++
 #+BEGIN_SRC emacs-lisp
   (add-hook 'c++-mode-hook 'yas-minor-mode)
@@ -728,6 +812,9 @@ Each category also has additional settings.
   ;; use python3 by default
   (when (executable-find "ipython3")
     (setq python-shell-interpreter "ipython3"))
+  (setq python-shell-interpreter "python3")
+
+  (setq flycheck-python-pycompile-executable "python3")
 
   (with-eval-after-load 'company
       (add-hook 'python-mode-hook 'company-mode))
@@ -800,6 +887,94 @@ Each category also has additional settings.
       (add-hook 'julia-mode-hook 'company-mode))
 #+END_SRC
 
+*** javascript
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode :ensure t :defer t
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.json\\'" . javascript-mode))
+  :commands js2-mode
+  :init (progn
+          (setq-default js-indent-level 2
+                        js2-indent-switch-body t
+                        js2-auto-indent-p t
+                        js2-global-externs '("angular")
+                        js2-indent-on-enter-key t
+                        flycheck-disabled-checkers '(javascript-jshint)
+                        flycheck-checkers '(javascript-eslint)
+                        flycheck-eslintrc "~/.eslintrc"))
+          (add-to-list 'interpreter-mode-alist (cons "node" 'js2-mode)))
+          ;;(add-to-list 'js2-mode-hook 'flycheck-mode))
+
+  (defun my-js-mode-hook () 
+    (setq indent-tabs-mode nil tab-width 4 js-indent-level 4)) 
+  (add-hook 'js-mode-hook 'my-js-mode-hook)
+  (add-hook 'js2-mode-hook 'my-js-mode-hook)
+#+END_SRC
+*** java
+Change default offset.
+#+BEGIN_SRC emacs-lisp
+  (setq-default c-default-style "linux"
+                c-basic-offset 4)
+  (use-package meghanada
+    :ensure t)
+  (add-hook 'java-mode-hook
+            (lambda ()
+              ;; meghanada-mode on
+              (meghanada-mode t)
+              (flycheck-mode +1)
+              (setq c-basic-offset 4)
+              ;; use code format
+              ;;(add-hook 'before-save-hook 'meghanada-code-beautify-before-save)
+  ))
+  (cond
+     ((eq system-type 'windows-nt)
+      (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+      (setq meghanada-maven-path "mvn.cmd"))
+     (t
+      (setq meghanada-java-path "java")
+      (setq meghanada-maven-path "mvn")))
+  (use-package jenkinsfile-mode
+    :ensure t)
+  (use-package realgud
+    :ensure t)
+  (use-package realgud-jdb
+    :ensure t)
+  (use-package logview
+    :ensure t)
+;;  (custom-set-variables
+;;   '(eclim-eclipse-dirs '("/Applications/Eclipse.app"))
+;;   '(eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/eclimd")
+;;   '(eclimd-executable "/Applications/Eclipse.app/Contents/Eclipse/eclimd"))
+#+END_SRC
+*** Postgres
+For reference, default =sql-postgres-login-params= are
+
+I use
+#+BEGIN_SRC emacs-lisp
+  (setq sql-postgres-program "/Users/user/.local/bin/psql")
+  (setq sql-postgres-login-params 
+        '((user "postgres")
+           (database "intellipix")
+           (server "localhost")))
+  (bind-key "C-c p" 'sql-postgres)
+  ;;(setq sql-postgres-options "optional command line options")
+#+END_SRC
+
+*** Flutter / Dart
+#+BEGIN_SRC emacs-lisp
+  (use-package dart-mode :ensure t :defer t)
+  (use-package yaml-mode :ensure t :defer t)
+  (use-package flutter :ensure t :defer t)
+#+END_SRC
+*** skewer
+Used for JS debugging.
+#+BEGIN_SRC emacs-lisp
+  (use-package skewer-mode :ensure t :defer t)
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode)
+#+END_SRC
+
 * Git integration
 Countless are the times where I opened ansi-term to use =git= on something.
 These times are also something that I'd prefer stay in the past, since =magit= is
@@ -810,9 +985,12 @@ great. It's easy and intuitive to use, shows its options at a keypress and much 
     :ensure t
     :config
     (setq magit-push-always-verify nil)
-    (setq git-commit-summary-max-length 50)
-    :bind
-    ("M-g" . magit-status))
+    (setq git-commit-summary-max-length 50))
+    ;;:bind
+    ;;("M-g" . magit-status))
+;;  (define-key magit-mode-map (kbd "M-g") nil)
+;; (define-key magit-mode-map (kbd "M-g") nil)
+;;  (bind-key "M-g" 'goto-line)
 #+END_SRC
 * Remote editing
 I have no need to directly edit files over SSH, but what I do need is a way to edit files as root.
@@ -869,14 +1047,12 @@ Hitting tab after an "<el" in an org-mode file will create a template for elisp 
 ** Exporting options
 One of the best things about org is the ability to export your file to many formats.
 Here is how we add more of them!
-
 *** latex
 #+BEGIN_SRC emacs-lisp
   (when (file-directory-p "/usr/share/emacs/site-lisp/tex-utils")
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/tex-utils")
     (require 'xdvi-search))
 #+END_SRC
-
 * Diminishing modes
 Your modeline is sacred, and if you have a lot of modes enabled, as you will if you use this config,
 you might end up with a lot of clutter there, the package =diminish= disables modes on the mode line but keeps
@@ -980,7 +1156,7 @@ And this quickly deletes a line.
       (when filename
         (kill-new filename)
         (message "Copied buffer file name '%s' to the clipboard." filename))))
-  (global-set-key (kbd "C-c C-f") 'copy-file-name-to-clipboard)
+  (global-set-key (kbd "C-c C-q") 'copy-file-name-to-clipboard)
 #+END_SRC
 ** Delete file / Rename file
 #+BEGIN_SRC emacs-lisp
@@ -1047,48 +1223,106 @@ This file is loaded here, and layout switchers are provided.
 #+BEGIN_SRC emacs-lisp
   ;; Insert new line below current line and move cursor to new line
   ;; it will also indent newline
-  (global-set-key (kbd "<C-return>")
+  (global-set-key (kbd "C-o")
                   (lambda ()
                     (interactive)
                     (end-of-line)
                     (newline-and-indent)))
   ;; Insert new line above current line and move cursor to previous line (newly inserted line)
   ;; it will also indent newline
-  (global-set-key (kbd "<C-S-return>")
+  (global-set-key (kbd "C-S-o")
                   (lambda ()
                     (interactive)
                     (previous-line)
                     (end-of-line)
                     (newline-and-indent)))
 #+END_SRC
-* Rebinding over Org-mode
-** Rebind paragraph and buffer movement
-(I use programmer Dvorak layout.)
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-,") 'beginning-of-buffer)
-  (global-set-key (kbd "C-.") 'end-of-buffer)
-  (global-set-key (kbd "C-{") 'backward-paragraph)
-  (global-set-key (kbd "C-}") 'forward-paragraph)
-#+END_SRC
 ** Default browser and Chrome
 I keep a Google Chrome keybinding "just in case".
 #+BEGIN_SRC emacs-lisp
-  (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "qutebrowser")
+  (setq browse-url-browser-function 'browse-url-default-macosx-browser)
+  ;;(setq browse-url-browser-function 'browse-url-generic
+  ;;      browse-url-generic-program "open -a /Applications/Google\\ Chrome.app")
 
-  (defun org-open-at-point-with-chrome ()
-    (interactive)
-    (let ((browse-url-browser-function 'browse-url-chrome))
-      (org-open-at-point )))
-  
-  (define-key org-mode-map (kbd "C-c C-;") 'org-open-at-point-with-chrome)
+  ;;--args '--remote-debugging-port=9222'
+  (define-key org-mode-map (kbd "C-c C-;") 'org-open-at-point)
 #+END_SRC
 
 * Further work
 ** TODO Integrate setup to .dotfiles bundle, e.g., as [[https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789][here]]
+#+BEGIN_SRC emacs-lisp
+  (use-package indium
+    :ensure t)
+  (use-package sourcemap
+    :ensure t)
+  (add-hook 'js-mode-hook #'indium-interaction-mode)
+#+END_SRC
 
+*** html
+#+BEGIN_SRC emacs-lisp
+  (setq sgml-quick-keys 'close)
+  (setq sgml-basic-offset 4) ;; change offset
+  (setq sgml-specials '())
+  ;;(eval-after-load "sgml-mode" '(setq sgml-specials '()))
 
+  (add-hook 'html-mode-hook 'yas-minor-mode)
+  (add-hook 'html-mode-hook 'flycheck-mode)
 
+  (with-eval-after-load 'company
+      (add-hook 'html-mode-hook 'company-mode))
+#+END_SRC
+
+*** Prohibit tabs
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+END_SRC
+*** web-mode
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode :ensure t :defer t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'web-mode-hook 'flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (setq web-mode-markup-indent-offset 4
+        web-mode-enable-auto-pairing t
+        web-mode-enable-current-element-highlight t
+        web-mode-enable-block-face t
+        web-mode-enable-part-face t)
+  (bind-key "C-c C-x C-a" 'web-mode-tag-attributes-sort)
+  (bind-key "C-c C-x C-b" 'web-mode-tag-beginning)
+  (bind-key "C-c C-x C-e" 'web-mode-tag-end)
+  (bind-key "C-c C-x C-m" 'web-mode-tag-match)
+  (bind-key "C-c C-x C-f" 'web-mode-tag-next)
+  (bind-key "C-c C-x C-b" 'web-mode-tag-previous)
+  (bind-key "C-c C-x C-s" 'web-mode-tag-select)
+
+  (bind-key "C-c C-e C-+" 'web-mode-element-extract)
+  (bind-key "C-c C-e C--" 'web-mode-element-contract)
+  (bind-key "C-c C-e C-/" 'web-mode-element-close)
+  (bind-key "C-c C-e C-I" 'web-mode-element-insert-at-point)
+  (bind-key "C-c C-e C-a" 'web-mode-element-content-select)
+  (bind-key "C-c C-e C-b" 'web-mode-element-beginning)
+  (bind-key "C-c C-e C-c" 'web-mode-element-clone)
+  (bind-key "C-c C-e C-d" 'web-mode-element-child)
+  (bind-key "C-c C-e C-e" 'web-mode-element-end)
+  (bind-key "C-c C-e C-f" 'web-mode-element-children-fold-or-unfold)
+  (bind-key "C-c C-e C-i" 'web-mode-element-insert)
+  (bind-key "C-c C-e C-k" 'web-mode-element-kill)
+  (bind-key "C-c C-e C-m" 'web-mode-element-mute-blanks)
+  (bind-key "C-c C-e C-n" 'web-mode-element-next)
+  (bind-key "C-c C-e C-p" 'web-mode-element-previous)
+  (bind-key "C-c C-e C-r" 'web-mode-element-rename)
+  (bind-key "C-c C-e C-s" 'web-mode-element-select)
+  (bind-key "C-c C-e C-t" 'web-mode-element-transpose)
+  (bind-key "C-c C-e C-u" 'web-mode-element-parent)
+  (bind-key "C-c C-e C-v" 'web-mode-element-vanish)
+  (bind-key "C-c C-e C-w" 'web-mode-element-wrap)
+
+)
+
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+#+END_SRC
 
 
 
