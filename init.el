@@ -6,6 +6,9 @@
 ;;; Code:
 (setq debug-on-error t) ;; Produce backtraces when errors occur
 
+;; TLS connection issues https://github.com/emacs-evil/evil/issues/1181
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;;; This fixed garbage collection, makes emacs start up faster ;;;;;;;
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
@@ -22,7 +25,7 @@
 
 (add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
 (add-hook 'emacs-startup-hook 'startup/reset-gc)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; This is all kinds of necessary
 (require 'package)
@@ -34,7 +37,7 @@
 												 ("melpa" . "https://melpa.org/packages/")
 												 ("org"   . "https://orgmode.org/elpa/")))
 (package-initialize)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Bootstrapping use-package
 (unless (package-installed-p 'use-package)
@@ -125,19 +128,46 @@
 
 
 ;;;; generic packages
-(use-package free-keys)
 (use-package all-the-icons)
-(use-package atomic-chrome
-  :ensure t)
+(use-package atomic-chrome)
 (atomic-chrome-start-server)
+
 (use-package beacon
   :config
   (beacon-mode 1))
+
+(use-package fira-code-mode
+  ;; ligatures you don't want
+  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
+  :hook prog-mode
+  :config
+  (fira-code-mode-set-font))
+
+(use-package free-keys)
+(use-package hungry-delete
+  :config
+  (global-hungry-delete-mode))
+
+(use-package pdf-tools)
+(pdf-tools-install)
+
+(use-package rainbow-mode
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-mode))
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+
+;;;; site packages
 (add-to-list 'load-path (expand-file-name "site-lisp/dired+" user-emacs-directory))
 (require 'dired+)
+
 (add-to-list 'load-path (expand-file-name "site-lisp/run-current-file" user-emacs-directory))
 (require 'run-current-file)
 (global-set-key (kbd "<f8>") 'xah-run-current-file)
+
+;;;; custom commands
 (use-package expand-region
   :bind ("C-q" . er/expand-region))
 (defun fill-to-end (char)
@@ -154,17 +184,6 @@
     (while (< (current-column) 72)
       (insert-char char))))
 
-(use-package hungry-delete
-  :config
-  (global-hungry-delete-mode))
-(use-package pdf-tools
-  :ensure t)
-(pdf-tools-install)
-(use-package rainbow-mode
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-mode))
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 
 ;;;; generic modes
@@ -772,12 +791,12 @@
 ;;;; keybinding config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package general
   :config
-  (general-create-definer rune/leader-keys
+  (general-create-definer at/leader-keys
     :keymaps '(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC")
 
-  (rune/leader-keys
+  (at/leader-keys
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")))
 
@@ -785,15 +804,15 @@
  "C-h C-k" 'free-keys
  "C-!" 'rgrep
  "C-c m" 'magit
- "C-$" 'term-paste)
+ "C-$" 'term-paste
+ "C-," 'beginning-of-buffer
+ "C-." 'end-of-buffer
+ "C-x C-o" 'ace-window
+ "C-)" 'other-frame
+ )
 
-(global-set-key (kbd "C-,") 'beginning-of-buffer)
-(global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-{") 'backward-paragraph)
 (global-set-key (kbd "C-}") 'forward-paragraph)
-
-(general-define-key (kbd "C-o") 'ace-window)
-(global-set-key (kbd "C-=") 'other-frame)
 
 (define-key org-mode-map (kbd "C-,") nil)
 (define-key org-mode-map (kbd "C-M-t") nil)
@@ -806,3 +825,58 @@
 (global-set-key (kbd "C-c '") 'org-edit-src-code)
 
 
+;;; evil
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+(use-package hydra)
+
+(defhydra hydra-text-scale (:timeout 8)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
+
+(at/leader-keys
+  "o" '(hydra-text-scale/body :which-key "scale text"))
+;; (add-to-list 'load-path (expand-file-name "site-lisp/evil" user-emacs-directory))
+;; (require 'evil)
+;; (setq evil-want-integration t)
+;; (setq evil-want-keybinding nils)
+;; (setq evil-want-C-u-scroll t)
+;; (setq evil-want-C-i-jump nil)
+;; (evil-mode 1)
+;; (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+;; (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+;; ;; Use visual line motions even outside of visual-line-mode buffers
+;; (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+;; (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+;; (evil-set-initial-state 'messages-buffer-mode 'normal)
+;; (evil-set-initial-state 'dashboard-mode 'normal)
+
+;; (use-package evil-collection
+;;   :after evil
+;;   :config
+;;   (evil-collection-init))
