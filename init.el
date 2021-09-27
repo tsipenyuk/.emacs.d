@@ -266,41 +266,6 @@
   :config
   (which-key-mode))
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         ("C-x C-n" . newline)
-				 :map ivy-minibuffer-map
-				 ("TAB" . ivy-alt-done)
-				 ("C-j" . ivy-alt-done)
-				 ("C-n" . ivy-next-line)
-				 ("C-p" . ivy-previous-line)
-				 :map ivy-switch-buffer-map
-				 ("C-k" . ivy-previous-line)
-				 ("C-l" . ivy-done)
-				 ("C-d" . ivy-switch-buffer-kill)
-				 :map ivy-reverse-i-search-map
-				 ("C-k" . ivy-previous-line)
-				 ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1)
-  :custom
-  (company-minimum-prefix-length 3))
-
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-
-(define-key ivy-mode-map (kbd "C-o") nil)
-
-
-(use-package counsel
-  :bind (("C-M-t" . 'counsel-switch-buffer)
-				 :map minibuffer-local-map
-				 ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (counsel-mode 1))
-
 
 (setq scroll-conservatively 100)
 
@@ -364,9 +329,7 @@
   (mapc 'kill-buffer (buffer-list)))
 (global-set-key (kbd "C-M-s-k") 'close-all-buffers)
 
-(use-package avy
-  :bind
-  ("M-s" . avy-goto-char))
+
 
 (defun split-window-horizontally-instead ()
   "Kill any other windows and re-split such that the current window is on the top half of the frame."
@@ -857,8 +820,28 @@
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
+(defhydra hydra-navigation (:timeout 1)
+  "navigate emacs"
+  ("b" ivy-switch-buffer)
+  ("s" save-buffer)
+  ("o" ace-window)
+  ("u" ace-swap-window)
+  ("f" counsel-find-file))
+
+(at/leader-keys
+  "t" '(hydra-navigation/body :which-key "navigate emacs"))
 (at/leader-keys
   "o" '(hydra-text-scale/body :which-key "scale text"))
+
+(use-package avy
+  :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
+
+(at/leader-keys
+  "j"   '(:ignore t :which-key "jump")
+  "jj"  '(avy-goto-char :which-key "jump to char")
+  "jw"  '(avy-goto-word-0 :which-key "jump to word")
+  "jl"  '(avy-goto-line :which-key "jump to line"))
+
 ;; (add-to-list 'load-path (expand-file-name "site-lisp/evil" user-emacs-directory))
 ;; (require 'evil)
 ;; (setq evil-want-integration t)
@@ -880,3 +863,37 @@
 ;;   :after evil
 ;;   :config
 ;;   (evil-collection-init))
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         ("C-x C-n" . newline)
+				 :map ivy-minibuffer-map
+				 ("TAB" . ivy-alt-done)
+				 ("C-j" . ivy-next-line)
+				 ("C-k" . ivy-previous-line)
+				 :map ivy-switch-buffer-map
+				 ("C-k" . ivy-previous-line)
+				 ("C-l" . ivy-done)
+				 ("C-d" . ivy-switch-buffer-kill)
+				 :map ivy-reverse-i-search-map
+				 ("C-k" . ivy-previous-line)
+				 ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1)
+  :custom
+  (company-minimum-prefix-length 3))
+
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+(define-key ivy-mode-map (kbd "C-o") nil)
+
+
+(use-package counsel
+  :bind (("C-M-t" . 'counsel-switch-buffer)
+				 :map minibuffer-local-map
+				 ("C-r" . 'counsel-minibuffer-history))
+  :config
+  (counsel-mode 1))
+
