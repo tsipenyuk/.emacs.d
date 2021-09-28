@@ -1,4 +1,4 @@
-;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
+;;; INIT.el --- Load the full configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;;   2020-11-18 -- reworked using https://pages.sachachua.com/.emacs.d/Sacha.html
 ;;;                 and dave emacs setup
@@ -788,6 +788,7 @@
 (global-set-key (kbd "C-c '") 'org-edit-src-code)
 
 
+(global-undo-tree-mode)
 ;;; evil
 (use-package evil
   :init
@@ -798,14 +799,25 @@
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "RET") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "<C-return>") 'newline)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-normal-state-map (kbd "<C-return>") 'newline)
+  (evil-set-undo-system 'undo-tree)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'sql-interactive-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
+
+(general-define-key
+ :states ''normal
+ :keymaps 'comint-mode-map
+ "<return>" 'comint-send-input
+ "<C-return>" 'comint-send-input)
 
 (use-package evil-collection
   :after evil
@@ -820,13 +832,14 @@
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
-(defhydra hydra-navigation (:timeout 1)
+(defhydra hydra-navigation (:timeout 2)
   "navigate emacs"
   ("b" ivy-switch-buffer)
   ("s" save-buffer)
   ("o" ace-window)
   ("u" ace-swap-window)
-  ("f" counsel-find-file))
+  ("f" counsel-find-file)
+  ("g" nil "finished" :exit t))
 
 (at/leader-keys
   "t" '(hydra-navigation/body :which-key "navigate emacs"))
@@ -842,6 +855,16 @@
   "jw"  '(avy-goto-word-0 :which-key "jump to word")
   "jl"  '(avy-goto-line :which-key "jump to line"))
 
+(fset 'at-macro/paste
+   (kmacro-lambda-form [?a ?  escape ?p] 0 "%d"))
+(fset 'at-macro/sql-yank
+    (kmacro-lambda-form [?? ?s ?e ?l ?e ?c ?t return ?v ?/ ?\; return ?y] 0 "%d"))
+ 
+(at/leader-keys
+  "p"   '(:ignore t :which-key "paste")
+  "pp"  '(at-macro/paste :which-key "enter space and paste")
+  "p."  '(at-macro/sql-yank :which-key "copy between select and ;")
+   )
 ;; (add-to-list 'load-path (expand-file-name "site-lisp/evil" user-emacs-directory))
 ;; (require 'evil)
 ;; (setq evil-want-integration t)
